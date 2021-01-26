@@ -5,13 +5,12 @@ You can keep moving around "Logic Blocks" until you are satisfied with the outco
 */
 
 int level = 1;
-PImage GridBlock;
-float[] xGridPosition = { 850, 1025, 1200, 1375, 1550 };
-float[] yGridPosition = { 125, 300, 475, 650, 825 };
+
+PImage LevelOne;
 
 void setup() {
   
-  GridBlock = loadImage("Platform.png");
+  LevelOne = loadImage("Level1.png");
   
 }
 
@@ -48,26 +47,15 @@ void draw() {
  
       
 void drawMenuScreen() {
-  background(30,40,50); // insert menu screen
+  background(0,80,0); // insert menu screen
 }
 
 
 void drawLevelOne() {
   
-  background(0, 80, 0); // insert backdrop
-  
-  GridBlock.resize(175, 175);
-  int j = 0;
-  for (int i = 0; i < xGridPosition.length; i++) {
-    image(GridBlock, xGridPosition[i], yGridPosition[j]);
-    if (i == xGridPosition.length - 1 && j < 4) {
-      j = j + 1;
-      i = 0;
-      image(GridBlock, xGridPosition[i], yGridPosition[j]);
-    } else {
-      image(GridBlock, xGridPosition[i], yGridPosition[4]);
-    }
-  }
+  background(#5A69A0);
+  image(LevelOne, 800, 45);
+  drawLogicScreen();
 }
 
 void drawLevelTwo() {
