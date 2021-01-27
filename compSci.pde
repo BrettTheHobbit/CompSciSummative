@@ -9,19 +9,21 @@ import ddf.minim.*;
 Minim minim;
 AudioPlayer player;
 
-int level = 1;
+int level = 6;
 int initialX = 0;
 int initialY = 0;
 static final int FADE = 2500;
 
 PImage LevelOne;
+PImage GameOver;
 Block logic;
 
 void setup() {
   
   logic = new Block(initialX, initialY);
   LevelOne = loadImage("Level1.png");
-  GameOver = loadImage("GameOver.png);
+  GameOver = loadImage("GameOver.png");
+ 
   minim = new Minim(this);
   player = minim.loadFile("gameTheme.mp3");
   player.shiftGain(player.getGain(),-80,FADE);
@@ -48,14 +50,15 @@ void draw() {
     drawLevelFour();
   } else if (level == 5) {
     drawLevelFive();
-  } else if (level == 6){
-  drawGameOver();
+  } else if (level == 6) {
+    drawGameOver();
   }
 }
  
       
 void drawMenuScreen() {
-  
+  rect(0,0,width, height);
+  fill(40, 60, 279);
 }
 
 
@@ -67,7 +70,6 @@ void drawLevelOne() {
   logic.playLogic();
   logic.drawBlock();
   logic.updateText();
-  
 }
 
 void drawLevelTwo() {
@@ -82,9 +84,16 @@ void drawLevelFour() {
 void drawLevelFive() {
 }
 
-void drawGameOver(){
- // image(GameOver, ?, ?);
+void drawGameOver() {
+  
+  GameOver.resize(width, height);
+  image(GameOver, 0, 0);
+  
+   if (mousePressed && mouseX > (width/4)+25 && mouseX < 3*(width/4)-45 && mouseY > 3*(height/5)+90 && mouseY < 4*(height/5)+75) {
+     level = 0;
+   }
 }
+
 
 
 
