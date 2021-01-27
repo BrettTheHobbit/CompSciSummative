@@ -10,24 +10,24 @@ Minim minim;
 AudioPlayer player;
 
 int level = 6;
-int initialX = 0;
-int initialY = 0;
+int blockX, blockY = 0;
 static final int FADE = 2500;
 
 PImage LevelOne;
+PImage IndianaJones;
 PImage GameOver;
 Block logic;
 
 void setup() {
   
-  logic = new Block(initialX, initialY);
+  logic = new Block(blockX, blockY);
   LevelOne = loadImage("Level1.png");
   GameOver = loadImage("GameOver.png");
  
   minim = new Minim(this);
   player = minim.loadFile("gameTheme.mp3");
   player.shiftGain(player.getGain(),-80,FADE);
-  player.play();
+  player.loop();
   player.shiftGain(-80,20,FADE);
 }
 
