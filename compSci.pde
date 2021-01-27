@@ -4,14 +4,28 @@ The game is split up into two different states, the logic and the action. The lo
 You can keep moving around "Logic Blocks" until you are satisfied with the outcome and you think you can reach the end, then you press the start button and your logic affects what happens to the action screen.
 */
 
+import ddf.minim.*;
+
+Minim minim;
+AudioPlayer player;
+
 int level = 1;
+int initialX = 0;
+int initialY = 0;
+static final int FADE = 2500;
 
 PImage LevelOne;
+Block logic;
 
 void setup() {
   
+  logic = new Block(initialX, initialY);
   LevelOne = loadImage("Level1.png");
-  
+  minim = new Minim(this);
+  player = minim.loadFile("gameTheme.mp3");
+  player.shiftGain(player.getGain(),-80,FADE);
+  player.play();
+  player.shiftGain(-80,20,FADE);
 }
 
 public void settings() {
@@ -21,33 +35,24 @@ public void settings() {
 
 void draw() {
     
-  switch (level) {
-    
-    case 1:
-      drawLevelOne();
-      break;
-
-    case 2:
-      drawLevelTwo();
-      break;
-      
-    case 3:
-      drawLevelThree();
-      break;
-      
-    case 4:
-      drawLevelFour();
-      break;
-      
-    case 5:
-      drawLevelFive();
-      break;
-  }
+  if (level == 0) {
+    drawMenuScreen();
+  } else if (level == 1) {
+    drawLevelOne();
+  } else if (level == 2) {
+    drawLevelTwo();
+  } else if (level == 3) {
+    drawLevelThree();
+  } else if (level == 4) {
+    drawLevelFour();
+  } else if (level == 5) {
+    drawLevelFive();
+  } 
 }
  
       
 void drawMenuScreen() {
-  background(0,80,0); // insert menu screen
+  
 }
 
 
@@ -55,7 +60,11 @@ void drawLevelOne() {
   
   background(#5A69A0);
   image(LevelOne, 800, 45);
-  drawLogicScreen();
+  logic.runLine();
+  logic.playLogic();
+  logic.drawBlock();
+  logic.updateText();
+  
 }
 
 void drawLevelTwo() {
@@ -69,6 +78,7 @@ void drawLevelFour() {
 
 void drawLevelFive() {
 }
+
 
 
 
