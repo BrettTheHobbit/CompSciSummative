@@ -21,6 +21,7 @@ void setup() {
   
   logic = new Block(initialX, initialY);
   LevelOne = loadImage("Level1.png");
+  GameOver = loadImage("GameOver.png);
   minim = new Minim(this);
   player = minim.loadFile("gameTheme.mp3");
   player.shiftGain(player.getGain(),-80,FADE);
@@ -47,7 +48,9 @@ void draw() {
     drawLevelFour();
   } else if (level == 5) {
     drawLevelFive();
-  } 
+  } else if (level == 6){
+  drawGameOver();
+  }
 }
  
       
@@ -79,6 +82,9 @@ void drawLevelFour() {
 void drawLevelFive() {
 }
 
+void drawGameOver(){
+ // image(GameOver, ?, ?);
+}
 
 
 
