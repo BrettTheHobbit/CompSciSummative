@@ -20,6 +20,8 @@ static final int FADE = 2500;
 PImage LevelOne;
 PImage LevelFour;
 PImage IndianaJones;
+PImage IndianaJonesLeft;
+PImage IndianaJonesRight;
 PImage GameOver;
 
 Block blockOne = new Block(xPos, yPos);
@@ -27,6 +29,8 @@ Block blockOne = new Block(xPos, yPos);
 void setup() {
   
   IndianaJones = loadImage("IndianaJones.png");
+  IndianaJonesLeft = loadImage("IndianaJonesLeft.png");
+  IndianaJonesRight = loadImage("IndianaJonesRight.png");
   LevelOne = loadImage("Level1.png");
   LevelFour = loadImage("Level4.png");
   GameOver = loadImage("GameOver.png");
