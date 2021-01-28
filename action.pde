@@ -7,12 +7,12 @@ static class action {
 
 void moveLeft() {
   image(LevelOne, 800, 45);
-  image(IndianaJones, jonesX-175, jonesY);
+  image(IndianaJonesLeft, jonesX-175, jonesY);
 }
 
 void moveRight() {
   image(LevelOne, 800, 45);
-  image(IndianaJones, jonesX+175, jonesY);
+  image(IndianaJonesRight, jonesX+175, jonesY);
 }
 
 void moveForwards() {
