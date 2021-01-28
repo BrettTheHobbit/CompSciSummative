@@ -12,18 +12,23 @@ class Block { //The block class is used to instantiate 10 blocks that when click
     this.blockY = bY;
   }
   void runLine() {
+    
     switch(this.blockText) {
       case "Left":
       //this is where the action class actually moves the physical player
+      moveLeft(jonesX);
       break;
       case "Right": 
       //moves player x ++
+      moveRight(jonesX);
       break;
       case "Forward":
       //moves playerY --
+      moveForwards(jonesY);
       break;
       case "Back":
       //moves playerY ++
+      moveBackwards(jonesY);
       break;
     }
   }

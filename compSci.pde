@@ -9,8 +9,10 @@ import ddf.minim.*;
 Minim minim;
 AudioPlayer player;
 
-int level = 6;
-int blockX, blockY = 0;
+int level = 1;
+int blockX, blockY = 10;
+int jonesX = 1065;
+int jonesY = 843;
 static final int FADE = 2500;
 
 PImage LevelOne;
@@ -21,6 +23,7 @@ Block logic;
 void setup() {
   
   logic = new Block(blockX, blockY);
+  IndianaJones = loadImage("IndianaJones.png");
   LevelOne = loadImage("Level1.png");
   GameOver = loadImage("GameOver.png");
  
@@ -66,6 +69,7 @@ void drawLevelOne() {
   
   background(#5A69A0);
   image(LevelOne, 800, 45);
+  image(IndianaJones, jonesX, jonesY);
   logic.runLine();
   logic.playLogic();
   logic.drawBlock();
