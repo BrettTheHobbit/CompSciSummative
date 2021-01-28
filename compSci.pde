@@ -72,6 +72,25 @@ void drawMenuScreen() {
   text("THIS IS A PLACEHOLDER", 450,150);
 }
 
+//put the play logic method in the main class, i didnt do it cuz i didnt want to override anyone elses work in github
+void playLogic() {
+  if(mouseX >= 0 && mouseX <= (width/3) + (width/15) && mouseY >= 13.5 * (height/15) && mouseY <= height) {
+    //the above conditional checks 
+    blockOne.runLine(blockOne.blockText); 
+    /* Dont uncomment this until all of the classes have been initialized
+    blockTwo.runLine(blockTwo.blockText); 
+    blockThree.runLine(blockThree.blockText); 
+    blockFour.runLine(blockFour.blockText); 
+    blockFive.runLine(blockFive.blockText); 
+    blockSix.runLine(blockSix.blockText);
+    blockSeven.runLine(blockSeven.blockText);  
+    blockEight.runLine(blockEight.blockText); 
+    blockNine.runLine(blockNine.blockText); 
+    blockTen.runLine(blockTen.blockText);
+    action.detectWin();//this might be messed up, remove this if error occurs. 
+    */
+  }
+}
 
 void drawLevelOne() {
  

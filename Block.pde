@@ -11,9 +11,9 @@ class Block { //The block class is used to instantiate 10 blocks that when click
     this.blockX = bX;
     this.blockY = bY;
   }
-  void runLine() {
+  void runLine(String textBlock) {
     
-    switch(this.blockText) {
+    switch(textBlock) {
       case "Left":
       //this is where the action class actually moves the physical player
       moveLeft(jonesX);
@@ -32,13 +32,7 @@ class Block { //The block class is used to instantiate 10 blocks that when click
       break;
     }
   }
-  //put the play logic method in the main class, i didnt do it cuz i didnt want to override anyone elses work in github
-  void playLogic() {
-    if(mouseX >= 0 && mouseX <= (width/3) + (width/15) && mouseY >= 13.5 * (height/15) && mouseY <= height) {
-      //the above conditional checks 
-      //blockOne.runLine(); UNCOMMENT THIS AFTER MOVING
-    }
-  }
+
   //The block needs click detection and to be drawn, it also needs a variable that will save the text.
   void drawBlock() {//all of this just draws the UI on the left side of the screen
    ellipseMode(CENTER);//personal preference, if you want to change it you can later
