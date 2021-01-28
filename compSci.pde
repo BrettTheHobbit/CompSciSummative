@@ -10,9 +10,9 @@ Minim minim;
 AudioPlayer mainTheme;
 AudioPlayer levelMusic;
 
-int level = 4;
+int level = 1;
 int xPos, yPos = 10;
-int jonesX, jonesY;
+
 static final int FADE = 2500;
 
 PImage LevelOne;
@@ -46,7 +46,7 @@ void draw() {
   if (level == 0) {
     drawMenuScreen();
   } else if (level == 1) {
-    drawLevelOne(1065, 843);
+    drawLevelOne();
   } else if (level == 2) {
     drawLevelTwo();
   } else if (level == 3) {
@@ -79,10 +79,10 @@ void drawMenuScreen() {
 }
 
 //put the play logic method in the main class, i didnt do it cuz i didnt want to override anyone elses work in github
-void playLogic() {
+void playLogic(int jonesX, int jonesY) {
   if(mouseX >= 0 && mouseX <= (width/3) + (width/15) && mouseY >= 13.5 * (height/15) && mouseY <= height) {
     //the above conditional checks 
-    blockOne.runLine(blockOne.blockText); 
+    blockOne.runLine(blockOne.blockText, jonesX, jonesY); 
     /* Dont uncomment this until all of the classes have been initialized
     blockTwo.runLine(blockTwo.blockText); 
     blockThree.runLine(blockThree.blockText); 
@@ -98,12 +98,15 @@ void playLogic() {
   }
 }
 
-void drawLevelOne(int jonesX, int jonesY) {
+void drawLevelOne() {
  
+  int jonesX = 1065;
+  int jonesY = 843;
   image(LevelOne, 800, 45);
   image(IndianaJones, jonesX, jonesY);
   blockOne.drawBlock();
   playLevelMusic();
+  playLogic(jonesX, jonesY);
 }
 
 void drawLevelTwo() {
@@ -147,8 +150,3 @@ void playLevelMusic() {
   mainTheme.pause();
   levelMusic.play();
 }
-
-
-
-
-  

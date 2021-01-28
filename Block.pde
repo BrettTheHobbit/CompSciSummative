@@ -11,25 +11,25 @@ class Block { //The block class is used to instantiate 10 blocks that when click
     this.blockX = bX;
     this.blockY = bY;
   }
-  void runLine(String textBlock) {
+  void runLine(String textBlock, int jonesX, int jonesY) {
     
     switch(textBlock) {
       case "Left":
-      //this is where the action class actually moves the physical player
-      moveLeft(jonesX);
-      break;
+        //this is where the action class actually moves the physical player
+        moveLeft(jonesX);
+        break;
       case "Right": 
-      //moves player x ++
-      moveRight(jonesX);
-      break;
+        //moves player x ++
+        moveRight(jonesX);
+        break;
       case "Forward":
-      //moves playerY --
-      moveForwards(jonesY);
-      break;
+        //moves playerY --
+        moveForwards(jonesY);
+        break;
       case "Back":
-      //moves playerY ++
-      moveBackwards(jonesY);
-      break;
+        //moves playerY ++
+        moveBackwards(jonesY);
+        break;
     }
   }
 
