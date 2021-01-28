@@ -10,7 +10,7 @@ Minim minim;
 AudioPlayer player;
 
 int level = 1;
-int blockX, blockY = 10;
+int xPos, yPos = 10;
 int jonesX = 1065;
 int jonesY = 843;
 static final int FADE = 2500;
@@ -18,29 +18,30 @@ static final int FADE = 2500;
 PImage LevelOne;
 PImage IndianaJones;
 PImage GameOver;
-Block logic;
+
+Block blockOne = new Block(xPos, yPos);
 
 void setup() {
   
-  logic = new Block(blockX, blockY);
   IndianaJones = loadImage("IndianaJones.png");
   LevelOne = loadImage("Level1.png");
   GameOver = loadImage("GameOver.png");
  
   minim = new Minim(this);
-  player = minim.loadFile("gameTheme.mp3");
+  player = minim.loadFile("gameSong1.mp3");
   player.shiftGain(player.getGain(),-80,FADE);
   player.loop();
   player.shiftGain(-80,20,FADE);
 }
 
 public void settings() {
-
   fullScreen();
 }
 
 void draw() {
-    
+  
+  background(33);
+  
   if (level == 0) {
     drawMenuScreen();
   } else if (level == 1) {
@@ -60,20 +61,23 @@ void draw() {
  
       
 void drawMenuScreen() {
-  rect(0,0,width, height);
-  fill(40, 60, 279);
+  
+  rectMode(CENTER);
+  fill(#000000);
+  rect(450,300,800,500);
+  fill(255,255,255);
+  createFont("Imprint MT Shadow", 32);
+  textAlign(CENTER, CENTER);
+  textSize(60);
+  text("THIS IS A PLACEHOLDER", 450,150);
 }
 
 
 void drawLevelOne() {
-  
-  background(#5A69A0);
+ 
   image(LevelOne, 800, 45);
   image(IndianaJones, jonesX, jonesY);
-  logic.runLine();
-  logic.playLogic();
-  logic.drawBlock();
-  logic.updateText();
+  blockOne.drawBlock();
 }
 
 void drawLevelTwo() {
@@ -96,6 +100,10 @@ void drawGameOver() {
    if (mousePressed && mouseX > (width/4)+25 && mouseX < 3*(width/4)-45 && mouseY > 3*(height/5)+90 && mouseY < 4*(height/5)+75) {
      level = 0;
    }
+}
+
+void mouseClicked() {
+  blockOne.updateText();
 }
 
 
