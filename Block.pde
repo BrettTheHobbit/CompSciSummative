@@ -1,4 +1,8 @@
-class Block {//The block class is used to instantiate 10 blocks that when clicked will change their text and therefore the effect
+/*
+This is the block class, holding all of the methods that will eventually affect the action class. things like directional movement and other activity methods are found here
+*/
+
+class Block { //The block class is used to instantiate 10 blocks that when clicked will change their text and therefore the effect
    int blockX;
    int blockY;//used for positional drawing
    int indexBlock = 0;//used so we can tell which one should be called first
@@ -58,7 +62,7 @@ class Block {//The block class is used to instantiate 10 blocks that when clicke
   void updateText() {//updates the text when the mouse button is clicked. Assumes at this point the player has already clicked the box so add detection somewhere else lol.
     if(mouseX >= this.blockX && mouseX <= (this.blockX + width/3) && mouseY >= this.blockY && mouseY <= (this.blockY + height/15)) { 
       //the above conditional checks if you clicked inside of the box
-      indexBlock++;
+      indexBlock = indexBlock + 1;
       if(this.indexBlock == 5) {
         indexBlock = 0;
       }
