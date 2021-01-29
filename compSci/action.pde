@@ -6,23 +6,35 @@ static class action {
 }
 
 void moveLeft() {
-  image(LevelOne, 800, 45);
-  image(IndianaJonesLeft, jonesX-175, jonesY);
+  if (level == 1){
+  image(LevelOne, width-970, height-950);
+  jonesX = jonesX - 175;
+  image(IndianaJonesLeft, jonesX, jonesY);
+  }
 }
 
 void moveRight() {
-  image(LevelOne, 800, 45);
-  image(IndianaJonesRight, jonesX+175, jonesY);
+  if(level == 1){
+    jonesX = jonesX + 175;
+  image(LevelOne, width-970, height-950);
+  image(IndianaJonesRight, jonesX, jonesY);
+  }
 }
 
 void moveForwards() {
-  image(LevelOne, 800, 45);
-  image(IndianaJones, jonesX, jonesY-175);
+  if(level == 1){
+  image(LevelOne, width-970, height-950);
+  jonesY = jonesY - 175;
+  image(IndianaJones, jonesX, jonesY);
+  }
 }
 
 void moveBackwards() {
-  image(LevelOne, 800, 45);
-  image(IndianaJones, jonesX, jonesY+175);
+  if(level == 1){
+  image(LevelOne, width-970, height-950);
+  jonesY = jonesY + 175;
+  image(IndianaJones, jonesX, jonesY);
+  }
 }
 
 void detectWin() {
