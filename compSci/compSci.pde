@@ -4,18 +4,21 @@ The game is split up into two different states, the logic and the action. The lo
 You can keep moving around "Logic Blocks" until you are satisfied with the outcome and you think you can reach the end, then you press the start button and your logic affects what happens to the action screen.
 */
 
-import ddf.minim.*;
 
-Minim minim;
-AudioPlayer mainTheme;
-AudioPlayer levelMusic;
+import processing.sound.*;
 
-int level = 1;
+
+SoundFile intro;
+SoundFile mainSound;//game sound one couldnt be decoded
+SoundFile gameOverSound;
+
+int level = 0;
 int xPos, yPos = 10;
 int jonesX = 1065;
 int jonesY = 843;
 int savedLevel;
-
+boolean soundLock = false;//this ensures that songs won't be played over and over again in a draw loop. Also dont put songs in the drawloop unless you want crazy feedback.
+boolean GOsoundLock = false;//this is the game over version
 
 static final int FADE = 2500;
 
@@ -36,10 +39,11 @@ void setup() {
   LevelOne = loadImage("Level1.png");
   LevelFour = loadImage("Level4.png");
   GameOver = loadImage("GameOver.png");
- 
-  minim = new Minim(this);
-  mainTheme = minim.loadFile("mainTrack.mp3");
-  levelMusic = minim.loadFile("levelSong.mp3");
+  intro = new SoundFile(this, "introSong.mp3");
+  mainSound = new SoundFile(this, "mainTrack.mp3");//cannot be decoded? for now will be replaced with workable sound
+  gameOverSound = new SoundFile(this, "mainTrack.mp3");
+  intro.play();
+  intro.loop();
  // saveProgress(level);
   //retrieveProgress(); uncomment for crashes lol
 }
@@ -55,6 +59,12 @@ void draw() {
   if (level == 0) {
     drawMenuScreen();
   } else if (level == 1) {
+    if(soundLock == false) {
+      intro.stop();//stops the intro music, will now play the main music
+      mainSound.play();
+      mainSound.loop();
+      soundLock = true;//this can never be accessed again
+    }
     drawLevelOne();
   } else if (level == 2) {
     drawLevelTwo();
@@ -65,6 +75,11 @@ void draw() {
   } else if (level == 5) {
     drawLevelFive();
   } else if (level == 6) {
+    if(GOsoundLock == false) {
+      mainSound.stop();//stops the normal game sound at this point and plays game over sound
+      gameOverSound.play();//there is no stop to this. This tune will continue forever and I dont know where to stop it *BUG WARNING*
+      gameOverSound.loop();
+    }
     drawGameOver();
   }
 }
@@ -80,7 +95,6 @@ void drawMenuScreen() {
   textAlign(CENTER, CENTER);
   textSize(60);
   text("THIS IS A PLACEHOLDER", 450,150);
-  playMenuMusic();
   
   if (mousePressed) {
     level++;
@@ -112,7 +126,6 @@ void drawLevelOne() {
   image(LevelOne, 800, 45);
   image(IndianaJones, jonesX, jonesY);
   blockOne.drawBlock();
-  playLevelMusic();
   playLogic();
 }
 
@@ -127,7 +140,6 @@ void drawLevelFour(int jonesX, int jonesY) {
   image(LevelFour, 800, 45);
   image(IndianaJones, jonesX, jonesY);
   blockOne.drawBlock();
-  playLevelMusic();
 }
 
 void drawLevelFive() {
@@ -145,15 +157,4 @@ void drawGameOver() {
 
 void mouseClicked() {
   blockOne.updateText();
-}
-
-void playMenuMusic() {
-  
-  mainTheme.play();
-}
-
-void playLevelMusic() {
-  
-  mainTheme.pause();
-  //levelMusic.play();
 }
