@@ -143,6 +143,7 @@ void drawLevelOne(int jonesX, int jonesY) {
   pop();
   blockOne.drawBlock();
   playLogic(jonesX, jonesY);
+  level1Hit();
 }
 
 void drawLevelTwo() {
