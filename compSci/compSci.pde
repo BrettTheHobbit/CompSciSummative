@@ -12,7 +12,7 @@ SoundFile intro;
 SoundFile mainSound;//game sound one couldnt be decoded
 SoundFile gameOverSound;
 
-int level = 0;
+int level = 4;
 int xPos, yPos = 10;
 int jonesX = 1065;
 int jonesY = 843;
@@ -52,7 +52,7 @@ public void settings() {
 
 void draw() {
   
-  background(33);
+  background(#5d5c73);
   
   if (level == 0) {
     drawMenuScreen();
@@ -100,13 +100,13 @@ void draw() {
   textAlign(CENTER, CENTER);
   textSize(width/20);
   fill(155);
-  text("THIS IS A PLACEHOLDER", width/2,150);
+  text("Logic Quest", width/2,150);
   textSize(width/50);
   text("Press Anywhere to continue", width/2, height/2.4);
   
   
   image(img, width/2, height/1.34);
-  image(img2, width/2, height/1.76470);
+  image(img2, width/2, height/1.67);
   if(mousePressed) {
    level = 1;//sets it to the first level 
   }
@@ -135,8 +135,10 @@ void playLogic() {
 }
 
 void drawLevelOne() {
- 
-  image(LevelOne, 800, 45);
+  push();
+  scale(.65);
+  image(LevelOne,2 *(width/3), height/8.5);
+  pop();
   image(IndianaJones, jonesX, jonesY);
   blockOne.drawBlock();
   playLogic();
@@ -149,8 +151,10 @@ void drawLevelThree() {
 }
 
 void drawLevelFour(int jonesX, int jonesY) {
-  
-  image(LevelFour, 800, 45);
+  push();
+  scale(.65);
+  image(LevelFour,2 *(width/3), height/8.5);
+  pop();
   image(IndianaJones, jonesX, jonesY);
   blockOne.drawBlock();
 }
