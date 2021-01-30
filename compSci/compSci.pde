@@ -4,22 +4,18 @@ The game is split up into two different states, the logic and the action. The lo
 You can keep moving around "Logic Blocks" until you are satisfied with the outcome and you think you can reach the end, then you press the start button and your logic affects what happens to the action screen.
 */
 
-
 import processing.sound.*;
 
-
 SoundFile intro;
-SoundFile mainSound;//game sound one couldnt be decoded
+SoundFile mainSound; //game sound one couldnt be decoded
 SoundFile gameOverSound;
 
-int level = 4;
+int level = 0;
 int xPos, yPos = 10;
-int jonesX = 1065;
-int jonesY = 843;
 int savedLevel;
+int jonesX, jonesY;
 boolean soundLock = false;//this ensures that songs won't be played over and over again in a draw loop. Also dont put songs in the drawloop unless you want crazy feedback.
 boolean GOsoundLock = false;//this is the game over version
-static final int FADE = 2500;
 
 PImage LevelOne;
 PImage LevelFour;
@@ -31,24 +27,25 @@ PImage GameOver;
 Block blockOne = new Block(xPos, yPos);
 
 void setup() {
+  
   IndianaJones = loadImage("IndianaJones.png");
   IndianaJonesLeft = loadImage("IndianaJonesLeft.png");
   IndianaJonesRight = loadImage("IndianaJonesRight.png");
   LevelOne = loadImage("Level1.png");
   LevelFour = loadImage("Level4.png");
   GameOver = loadImage("GameOver.png");
-  intro = new SoundFile(this, "introSong.mp3");
+  /* intro = new SoundFile(this, "introSong.mp3");
   mainSound = new SoundFile(this, "mainTrack.mp3");//cannot be decoded? for now will be replaced with workable sound
-  gameOverSound = new SoundFile(this, "mainTrack.mp3");
-  intro.play();
-  intro.loop();
- // saveProgress(level);
+  gameOverSound = new SoundFile(this, "mainTrack.mp3"); */
+  //intro.play();
+  //intro.loop();
+  //saveProgress(level);
   //retrieveProgress(); uncomment for crashes lol
 }
 
 public void settings() {
-  fullScreen();
-}
+  size(900, 600);
+} 
 
 void draw() {
   
@@ -57,13 +54,13 @@ void draw() {
   if (level == 0) {
     drawMenuScreen();
   } else if (level == 1) {
-    if(soundLock == false) {
+    /* if(soundLock == false) {
       intro.stop();//stops the intro music, will now play the main music
       mainSound.play();
       mainSound.loop();
-      soundLock = true;//this can never be accessed again
-    }
-    drawLevelOne();
+      soundLock = true;//this can never be accessed again 
+    } */
+    drawLevelOne(1065, 843);
   } else if (level == 2) {
     drawLevelTwo();
   } else if (level == 3) {
@@ -73,18 +70,20 @@ void draw() {
   } else if (level == 5) {
     drawLevelFive();
   } else if (level == 6) {
-    if(GOsoundLock == false) {
-      mainSound.stop();//stops the normal game sound at this point and plays game over sound
-      gameOverSound.play();//there is no stop to this. This tune will continue forever and I dont know where to stop it *BUG WARNING*
-      gameOverSound.loop();
-      GOsoundLock = true;
-    }
     drawGameOver();
+    /* if(GOsoundLock == false) {
+      //mainSound.stop();//stops the normal game sound at this point and plays game over sound
+      //gameOverSound.play();//there is no stop to this. This tune will continue forever and I dont know where to stop it *BUG WARNING*
+      //gameOverSound.loop();
+      GOsoundLock = true;
+    } */
+  } else if (level == 7) {
+    drawTutorial();
   }
 }
- 
+
+void drawMenuScreen() {
   
-  void drawMenuScreen(){
   PImage img = loadImage("mainScreenPlat.png");
   PImage img2 = loadImage("IndianaJones.png");
   PImage img3 = loadImage("cave-background.png");
@@ -107,18 +106,17 @@ void draw() {
   
   image(img, width/2, height/1.34);
   image(img2, width/2, height/1.67);
-  if(mousePressed) {
-   level = 1;//sets it to the first level 
-  }
   
-}      
-
+  if (mousePressed) {
+    level = 1;
+  }
+}
 
 //put the play logic method in the main class, i didnt do it cuz i didnt want to override anyone elses work in github
-void playLogic() {
+void playLogic(int jonesX, int jonesY) {
   if(mouseX >= 0 && mouseX <= (width/3) + (width/15) && mouseY >= 13.5 * (height/15) && mouseY <= height) {
     //the above conditional checks 
-    blockOne.runLine(blockOne.blockText); 
+    blockOne.runLine(blockOne.blockText, jonesX, jonesY); 
     /* Dont uncomment this until all of the classes have been initialized
     blockTwo.runLine(blockTwo.blockText); 
     blockThree.runLine(blockThree.blockText); 
@@ -134,14 +132,15 @@ void playLogic() {
   }
 }
 
-void drawLevelOne() {
+void drawLevelOne(int jonesX, int jonesY) {
+ 
   push();
   scale(.65);
   image(LevelOne,2 *(width/3), height/8.5);
   pop();
   image(IndianaJones, jonesX, jonesY);
   blockOne.drawBlock();
-  playLogic();
+  playLogic(jonesX, jonesY);
 }
 
 void drawLevelTwo() {
@@ -151,12 +150,14 @@ void drawLevelThree() {
 }
 
 void drawLevelFour(int jonesX, int jonesY) {
+  
   push();
   scale(.65);
   image(LevelFour,2 *(width/3), height/8.5);
   pop();
   image(IndianaJones, jonesX, jonesY);
   blockOne.drawBlock();
+  playLogic(jonesX, jonesY);
 }
 
 void drawLevelFive() {
@@ -175,3 +176,15 @@ void drawGameOver() {
 void mouseClicked() {
   blockOne.updateText();
 }
+
+void drawTutorial() {
+  image(IndianaJones, width/3+570, 500);
+  blockOne.drawBlock();
+  playLogic(width/3+570, 500);
+  fill(#FFFFFF);
+  textSize(30);
+  text("  Click the dotted lines to change the direction to where you want to go in \norder from your first move to its last. When you're ready to run it, click play.\n                            Practice moving around the empty space.", width/3+90, height/6);
+}
+  
+  
+  
