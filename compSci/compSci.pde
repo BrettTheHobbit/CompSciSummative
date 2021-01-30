@@ -19,7 +19,6 @@ int jonesY = 843;
 int savedLevel;
 boolean soundLock = false;//this ensures that songs won't be played over and over again in a draw loop. Also dont put songs in the drawloop unless you want crazy feedback.
 boolean GOsoundLock = false;//this is the game over version
-
 static final int FADE = 2500;
 
 PImage LevelOne;
@@ -32,7 +31,6 @@ PImage GameOver;
 Block blockOne = new Block(xPos, yPos);
 
 void setup() {
-  
   IndianaJones = loadImage("IndianaJones.png");
   IndianaJonesLeft = loadImage("IndianaJonesLeft.png");
   IndianaJonesRight = loadImage("IndianaJonesRight.png");
@@ -79,27 +77,42 @@ void draw() {
       mainSound.stop();//stops the normal game sound at this point and plays game over sound
       gameOverSound.play();//there is no stop to this. This tune will continue forever and I dont know where to stop it *BUG WARNING*
       gameOverSound.loop();
+      GOsoundLock = true;
     }
     drawGameOver();
   }
 }
  
-      
-void drawMenuScreen() {
+  
+  void drawMenuScreen(){
+  PImage img = loadImage("mainScreenPlat.png");
+  PImage img2 = loadImage("IndianaJones.png");
+  PImage img3 = loadImage("cave-background.png");
   
   rectMode(CENTER);
   fill(#000000);
-  rect(450,300,800,500);
+  rect(width/2 , height/2 , width/1/125 ,height/1.2);
   fill(255,255,255);
+  imageMode(CENTER);
+  image(img3, width/2, height/2, width/1.125, height/1.2);
+  
   createFont("Imprint MT Shadow", 32);
   textAlign(CENTER, CENTER);
-  textSize(60);
-  text("THIS IS A PLACEHOLDER", 450,150);
+  textSize(width/20);
+  fill(155);
+  text("THIS IS A PLACEHOLDER", width/2,150);
+  textSize(width/50);
+  text("Press Anywhere to continue", width/2, height/2.4);
   
-  if (mousePressed) {
-    level++;
+  
+  image(img, width/2, height/1.34);
+  image(img2, width/2, height/1.76470);
+  if(mousePressed) {
+   level = 1;//sets it to the first level 
   }
-}
+  
+}      
+
 
 //put the play logic method in the main class, i didnt do it cuz i didnt want to override anyone elses work in github
 void playLogic() {
