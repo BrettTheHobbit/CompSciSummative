@@ -5,6 +5,13 @@ This class displays the puzzle action. checking if the player and idol are touch
 static class action {
 }
 
+void level1Hit(){
+ if(get (jonesX+60, jonesY+65) == color (109, 76, 65) || get (jonesX+60, jonesY+65) == color (0, 0, 0)){
+   jonesX = jonesX - 50;
+   jonesY = jonesY - 50;
+ }
+}
+
 void moveLeft(int jonesX, int jonesY) {
   if (level == 1){
     push();
