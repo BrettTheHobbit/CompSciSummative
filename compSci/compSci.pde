@@ -10,7 +10,7 @@ SoundFile intro;
 SoundFile mainSound; //game sound one couldnt be decoded
 SoundFile gameOverSound;
 
-int level = 0;
+int level = 5;
 int xPos, yPos = 10;
 int savedLevel;
 int jonesX, jonesY;
@@ -18,7 +18,9 @@ boolean soundLock = false;//this ensures that songs won't be played over and ove
 boolean GOsoundLock = false;//this is the game over version
 
 PImage LevelOne;
+PImage LevelTwo;
 PImage LevelFour;
+PImage LevelFive;
 PImage IndianaJones;
 PImage IndianaJonesLeft;
 PImage IndianaJonesRight;
@@ -32,7 +34,9 @@ void setup() {
   IndianaJonesLeft = loadImage("IndianaJonesLeft.png");
   IndianaJonesRight = loadImage("IndianaJonesRight.png");
   LevelOne = loadImage("Level1.png");
+  LevelTwo = loadImage("pixil-frame-0.png");
   LevelFour = loadImage("Level4.png");
+  LevelFive = loadImage("level5.png");
   GameOver = loadImage("GameOver.png");
   /* intro = new SoundFile(this, "introSong.mp3");
   mainSound = new SoundFile(this, "mainTrack.mp3");//cannot be decoded? for now will be replaced with workable sound
@@ -133,10 +137,9 @@ void playLogic(int jonesX, int jonesY) {
 }
 
 void drawLevelOne(int jonesX, int jonesY) {
- 
   push();
-  scale(.65);
-  image(LevelOne,2 *(width/3), height/8.5);
+  scale(.5);
+  image(LevelOne,4 *(width/5), height/7.5);
   pop();
   image(IndianaJones, jonesX, jonesY);
   blockOne.drawBlock();
@@ -144,16 +147,21 @@ void drawLevelOne(int jonesX, int jonesY) {
 }
 
 void drawLevelTwo() {
+  push();
+  scale(.5);
+  image(LevelTwo,4 *(width/5), height/7.5);
+  pop();
+  blockOne.drawBlock();
+  //playLogic(jonesX, jonesY); IDK where to put it, I assume all the other ones must change as well
 }
 
 void drawLevelThree() {
 }
 
 void drawLevelFour(int jonesX, int jonesY) {
-  
   push();
-  scale(.65);
-  image(LevelFour,2 *(width/3), height/8.5);
+  scale(.5);
+  image(LevelFour,4 *(width/5), height/7.5);
   pop();
   image(IndianaJones, jonesX, jonesY);
   blockOne.drawBlock();
@@ -161,6 +169,12 @@ void drawLevelFour(int jonesX, int jonesY) {
 }
 
 void drawLevelFive() {
+  push();
+  scale(.5);
+  image(LevelFive,4 *(width/5), height/7.5);
+  pop();
+  blockOne.drawBlock();
+  //playLogic(jonesX, jonesY);
 }
 
 void drawGameOver() {

@@ -43,7 +43,7 @@ class Block { //The block class is used to instantiate 10 blocks that when click
    fill(#ffffff);//the text for the blocks \/  \/
    rectMode(CENTER);//so i can fit the text on the screen
    textSize(width/25);
-   text(this.blockText, this.blockX + 100, this.blockY + 20 + height/30);
+   text(this.blockText, this.blockX + 80, this.blockY + 10 + height/30);
    rectMode(CORNER);
    fill(#0ca716);//fills the green for the start button
    rect(0, 11*(height/15), width/3, height/4);//green rectangle
