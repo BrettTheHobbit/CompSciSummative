@@ -7,9 +7,13 @@ static class action {
 
 void moveLeft(int jonesX, int jonesY) {
   if (level == 1){
-    image(LevelOne, width-970, height-950);
+    push();
+    scale(.5);
+    image(LevelOne, 4 *(width/5), height/7.5);
     jonesX = jonesX - 175;
     image(IndianaJonesLeft, jonesX, jonesY);
+    pop();
+    blockOne.drawBlock();
   } else if (level == 7) {
     background(33);
     blockOne.drawBlock();
@@ -24,8 +28,12 @@ void moveLeft(int jonesX, int jonesY) {
 void moveRight(int jonesX, int jonesY) {
   if(level == 1){
     jonesX = jonesX + 175;
-    image(LevelOne, width-970, height-950);
+    push();
+    scale(.5);
+    image(LevelOne, 4 *(width/5), height/7.5);
     image(IndianaJonesRight, jonesX, jonesY);
+    pop();
+    blockOne.drawBlock();
   } else if (level == 7) {
     background(33);
     blockOne.drawBlock();
@@ -39,9 +47,13 @@ void moveRight(int jonesX, int jonesY) {
 
 void moveForwards(int jonesX, int jonesY) {
   if(level == 1){
-    image(LevelOne, width-970, height-950);
+    push();
+    scale(.5);
+    image(LevelOne, 4 *(width/5), height/7.5);
     jonesY = jonesY - 175;
     image(IndianaJones, jonesX, jonesY);
+    pop();
+    blockOne.drawBlock();
   } else if (level == 7) {
     background(33);
     blockOne.drawBlock();
@@ -55,9 +67,13 @@ void moveForwards(int jonesX, int jonesY) {
 
 void moveBackwards(int jonesX, int jonesY) {
   if(level == 1){
-    image(LevelOne, width-970, height-950);
+    push();
+    scale(.5);
+    image(LevelOne, 4 *(width/5),  height/7.5);
     jonesY = jonesY + 175;
     image(IndianaJones, jonesX, jonesY);
+    pop();
+    blockOne.drawBlock();
   } else if (level == 7) {
     background(33);
     blockOne.drawBlock();

@@ -10,7 +10,7 @@ SoundFile intro;
 SoundFile mainSound; //game sound one couldnt be decoded
 SoundFile gameOverSound;
 
-int level = 5;
+int level = 1;
 int xPos, yPos = 10;
 int savedLevel;
 int jonesX, jonesY;
@@ -64,7 +64,7 @@ void draw() {
       mainSound.loop();
       soundLock = true;//this can never be accessed again 
     } */
-    drawLevelOne(1065, 843);
+    drawLevelOne(990, 870);
   } else if (level == 2) {
     drawLevelTwo();
   } else if (level == 3) {
@@ -107,7 +107,6 @@ void drawMenuScreen() {
   textSize(width/50);
   text("Press Anywhere to continue", width/2, height/2.4);
   
-  
   image(img, width/2, height/1.34);
   image(img2, width/2, height/1.67);
   
@@ -139,9 +138,9 @@ void playLogic(int jonesX, int jonesY) {
 void drawLevelOne(int jonesX, int jonesY) {
   push();
   scale(.5);
-  image(LevelOne,4 *(width/5), height/7.5);
-  pop();
+  image(LevelOne, 4 *(width/5), height/7.5);
   image(IndianaJones, jonesX, jonesY);
+  pop();
   blockOne.drawBlock();
   playLogic(jonesX, jonesY);
 }
@@ -199,6 +198,7 @@ void drawTutorial() {
   textSize(30);
   text("  Click the dotted lines to change the direction to where you want to go in \norder from your first move to its last. When you're ready to run it, click play.\n                            Practice moving around the empty space.", width/3+90, height/6);
 }
+  
   
   
   
