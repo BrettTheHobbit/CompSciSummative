@@ -2,10 +2,9 @@
 This class displays the puzzle action. checking if the player and idol are touching and acting out everything that is said to happen in the logic class.
 */
 
-static class action {
-}
+//static class action was removed cuz it had nothing in it.
 
-void level1Hit(){
+void level1Hit(){//will detect if you reach the end of the first level
  if(get (jonesX+60, jonesY+65) == color (109, 76, 65) || get (jonesX+60, jonesY+65) == color (0, 0, 0)){
    jonesX = jonesX - 50;
    jonesY = jonesY - 50;
@@ -21,9 +20,11 @@ void moveLeft(int jonesX, int jonesY) {
     image(IndianaJonesLeft, jonesX, jonesY);
     pop();
     blockOne.drawBlock();
+    blockTwo.drawBlock();
   } else if (level == 7) {
     background(33);
     blockOne.drawBlock();
+    blockTwo.drawBlock();
     fill(#FFFFFF);
     textSize(30);
     text("  Click the dotted lines to change the direction to where you want to go in \norder from your first move to its last. When you're ready to run it, click play.\n                            Practice moving around the empty space.", width/3+90, height/6);
@@ -41,9 +42,11 @@ void moveRight(int jonesX, int jonesY) {
     image(IndianaJonesRight, jonesX, jonesY);
     pop();
     blockOne.drawBlock();
+    blockTwo.drawBlock();
   } else if (level == 7) {
     background(33);
     blockOne.drawBlock();
+    blockTwo.drawBlock();
     fill(#FFFFFF);
     textSize(30);
     text("  Click the dotted lines to change the direction to where you want to go in \norder from your first move to its last. When you're ready to run it, click play.\n                            Practice moving around the empty space.", width/3+90, height/6);
@@ -61,9 +64,11 @@ void moveForwards(int jonesX, int jonesY) {
     image(IndianaJones, jonesX, jonesY);
     pop();
     blockOne.drawBlock();
+    blockTwo.drawBlock();
   } else if (level == 7) {
     background(33);
     blockOne.drawBlock();
+    blockTwo.drawBlock();
     fill(#FFFFFF);
     textSize(30);
     text("  Click the dotted lines to change the direction to where you want to go in \norder from your first move to its last. When you're ready to run it, click play.\n                            Practice moving around the empty space.", width/3+90, height/6);
@@ -81,9 +86,11 @@ void moveBackwards(int jonesX, int jonesY) {
     image(IndianaJones, jonesX, jonesY);
     pop();
     blockOne.drawBlock();
+    blockTwo.drawBlock();
   } else if (level == 7) {
     background(33);
     blockOne.drawBlock();
+    blockTwo.drawBlock();
     fill(#FFFFFF);
     textSize(30);
     text("  Click the dotted lines to change the direction to where you want to go in \norder from your first move to its last. When you're ready to run it, click play.\n                            Practice moving around the empty space.", width/3+90, height/6);
