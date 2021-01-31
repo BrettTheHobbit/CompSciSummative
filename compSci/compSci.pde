@@ -126,10 +126,10 @@ void drawMenuScreen() {
 }
 
 //put the play logic method in the main class, i didnt do it cuz i didnt want to override anyone elses work in github
-void playLogic(int jonesX, int jonesY) {
-  if(mouseX >= 0 && mouseX <= (width/3) + (width/15) && mouseY >= 13.5 * (height/15) && mouseY <= height && clickGo) {
+void playLogic(int jonesX, int jonesY) {//only draws the last move, not all moves in succession
+if(mouseX >= 0 && mouseX <= (width/3) + (width/15) && mouseY >= 13.5 * (height/15) && mouseY <= height ) {
     //the above conditional checks 
-    blockOne.runLine(blockOne.blockText, jonesX, jonesY); 
+    blockOne.runLine(blockOne.blockText); 
     //Dont uncomment this until all of the classes have been initialized
     wait(90);//should be 1.5 seconds
     blockTwo.runLine(blockTwo.blockText, jonesX, jonesY); 
@@ -218,6 +218,14 @@ void mouseClicked() {
   clickGo = true;
   blockOne.updateText();
   blockTwo.updateText();
+  blockThree.updateText();
+  blockFour.updateText();
+  blockFive.updateText();
+  blockSix.updateText();
+  blockSeven.updateText();
+  blockEight.updateText();
+  blockNine.updateText();
+  blockTen.updateText();
 }
 
 void drawTutorial() {
@@ -232,18 +240,21 @@ void drawTutorial() {
   
   //this is the universal logic background.
  void drawBackground() {//all of this just draws the UI on the left side of the screen
+  push();
+  scale(.75);
   ellipseMode(CENTER);//personal preference, if you want to change it you can later   
   fill(#0ca716);//fills the green for the start button   
-  rect(0, 11*(height/15), width/3, height/4);//green rectangle
-  ellipse(width/3.15, 12.8 * height/15, 200, 200);//play circle
+  rect(0, 16*(height/15), width/3, height/4);//green rectangle
+  ellipse(width/2.75, 18 * height/15, 200, 200);//play circle
   fill(#05e613);
   stroke(#14d721);
   //all of these are basically UI elements that bear no meaning on the actual logic of the game
   textSize(width/10);   
-  text("Play", (width/15) - width/15, 13.5 * (height/15));//will write out the text after updating it
+  text("Play", (width/15) - width/15, 18.5 * (height/15));//will write out the text after updating it
   strokeWeight(5);
-  triangle((width/3.15) - 50, 12.4 * height/15, (width/3.15) - 50, 13.2 * height/15, (width/3.15) + 50, 12.8 * height/15  );
+  triangle((width/3.15) - 20, 17.4 * height/15, (width/3.15) - 20, 18.2 * height/15, (width/3.15) + 80, 17.8 * height/15);
   noStroke();//play triangle
+  pop();
  }
  
  void wait(int timeToWait) {//is used to delay the program, mainly for animations

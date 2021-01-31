@@ -10,7 +10,7 @@ void level1Hit(){//will detect if you reach the end of the first level
    jonesY = jonesY - 50;
  }
 }
-
+//ALL FOUR OF THESE 
 void moveLeft(int jonesX, int jonesY) {
   if (level == 1){
     push();
