@@ -124,7 +124,20 @@ void draw() {
   }
 }
 void drawSelectScreen() {
-  
+  fill(255);
+  textSize (width/25);
+  text("Click the level you want to play!", width/5, height/12);
+  push();//scales down all levels
+    scale(0.125);//makes the levels into thumbnail sizes
+    image(LevelOne, width, height*2);
+    image(LevelTwo, width * 3.25, height * 2);//uncomment the third level when added.
+    image(LevelFour, width * 5.5, height * 2);
+    image(LevelFour, width * 2.125, height * 5);
+    image(LevelFive, width * 4.5, height * 5);
+  pop();
+  text("<---- Back", 0, height);
+  textSize(width/10);
+  //text();
 }
 
 void drawLoadGame() {
