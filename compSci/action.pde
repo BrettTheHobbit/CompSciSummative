@@ -43,6 +43,27 @@ void levelFourHit(){
  }
 }
 
+void levelFiveHit(){
+    if(compSciMain.jonesX <= 360 * 1.8 || compSciMain.jonesX >= 860 * 1.8 || compSciMain.jonesY >= 540 * 1.8 || compSciMain.jonesY <= 40 * 1.8){ // border
+   // start at begining
+  }
+   if(compSciMain.jonesX >= 385 * 1.8 && compSciMain.jonesX <= 835 * 1.8 && compSciMain.jonesY >= 70 * 1.8 && compSciMain.jonesY <= 195 * 1.8){ // top blue area
+ // start at begining
+ }
+   if(compSciMain.jonesX >= 705 * 1.8 && compSciMain.jonesX <= 835 * 1.8 && compSciMain.jonesY >= 200 * 1.8 && compSciMain.jonesY <= 330 * 1.8){ // middle right blue area
+ // start at begining
+ }
+    if(compSciMain.jonesX >= 775 * 1.8 && compSciMain.jonesX <= 835 * 1.8 && compSciMain.jonesY >= 330 * 1.8 && compSciMain.jonesY <= 515 * 1.8){ // bottom right blue area (near key)
+ // start at begining
+ }
+  if(compSciMain.jonesX >= 385 * 1.8 && compSciMain.jonesX <= 775 * 1.8 && compSciMain.jonesY >= 460 * 1.8){ // bottom blue area (below key)
+ // start at begining
+ }
+  if(compSciMain.jonesX >= 385 * 1.8 && compSciMain.jonesX <= 705 * 1.8 && compSciMain.jonesY >= 400 * 1.8){ // below start
+ // start at begining
+ }
+}
+
 //ALL FOUR OF THESE 
 void moveLeft() {
   if (level == 1){
@@ -129,4 +150,13 @@ void moveBackwards() {
 }
 
 void detectWin() {
+  if(level == 1 && compSciMain.jonesX >= 655 * 1.9 && compSciMain.jonesX <= 800 * 1.9 && compSciMain.jonesY >= 80 * 1.9 && compSciMain.jonesY <= 160 * 1.9){ // bottom right blue area (near key)
+  level++;
+ }
+  if(level == 4 && compSciMain.jonesX >= 385 * 1.9 && compSciMain.jonesX <= 500 * 1.9 && compSciMain.jonesY >= 110 * 1.9 && compSciMain.jonesY <= 215 * 1.9){ // bottom right blue area (near key)
+  level++;
+ }
+  if(level == 5 && compSciMain.jonesX >= 705 * 1.8 && compSciMain.jonesX <= 770 * 1.8 && compSciMain.jonesY >= 390 * 1.8 && compSciMain.jonesY <= 460 * 1.8){ // bottom right blue area (near key)
+  level++;
+ }
 }
