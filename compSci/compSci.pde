@@ -21,7 +21,7 @@ SoundFile intro;
 SoundFile mainSound; //game sound one couldnt be decoded
 SoundFile gameOverSound;
 
-int level = 1;
+int level = 0;
 int xPos, yPos = 10;
 int savedLevel;
 
@@ -136,8 +136,8 @@ void drawSelectScreen() {
     image(LevelFive, width * 4.5, height * 5);
   pop();
   text("<---- Back", 0, height);
-  textSize(width/10);
-  //text();
+  //textSize(width/10);
+  text("Level One", width/4, height/2);
 }
 
 void drawLoadGame() {
@@ -175,7 +175,9 @@ void drawMenuScreen() {
   fill(155);
   text("Press 'S'\n to select a level!", width/4.5, height/1.75);
   text("Press 'L'\n to load a save!", width/1.35, height/1.75);
-  
+  rectMode(CORNER);
+  imageMode(CORNER);
+  textAlign(CORNER, CORNER);
   if (mousePressed) {
     level = 1;
   } else if(keyPressed && (key == 's' || key == 'S')) {//refers to the select screen
