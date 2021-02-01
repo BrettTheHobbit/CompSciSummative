@@ -231,7 +231,6 @@ void drawGameOver() {
 }
 
 void mouseClicked() {
-  clickGo = true;
   blockOne.updateText();
   blockTwo.updateText();
   blockThree.updateText();
