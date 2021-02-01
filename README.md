@@ -1,4 +1,4 @@
-# CompSciSummative
+# CompSciSummative: Logic Quest
 This is an educational game made by Brett Hobbs, Nehal Pamma, JC Abanto, Shanif Syed.
 It is a game designed to teach younger children about logical thinking and algorithm making.
 
@@ -11,7 +11,12 @@ You win the game if the player on the right side reaches the treasure!
 The commands at the momemt currently only involve movement as the player can only move in four directions.
 
 ### Visuals
-coming soon..
+First level with no changes:
+![alt text](https://cdn.discordapp.com/attachments/381770227593248770/805819109375344670/amoongus.PNG)
+First level after pressing the buttons on the side:
+![alt text](https://cdn.discordapp.com/attachments/381770227593248770/805819808436060200/unknown.png)
+Start Screen
+![alt text](https://cdn.discordapp.com/attachments/381770227593248770/805820387648077904/unknown.png)
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
