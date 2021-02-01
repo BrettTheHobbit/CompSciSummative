@@ -12,14 +12,16 @@ button click is incorrect, try moving it to mouse pressed imo (playLogic conditi
 last level
 collisions (borders and win con)
 I dont know if the wait function works or not... i dont think it does
+Scaling issue from menu screen to level one.
 */
+
 import processing.sound.*;
 
 SoundFile intro;
 SoundFile mainSound; //game sound one couldnt be decoded
 SoundFile gameOverSound;
 
-int level = 1;
+int level = 0;
 int xPos, yPos = 10;
 int savedLevel;
 
@@ -95,7 +97,7 @@ void draw() {
   } else if (level == 3) {
     drawLevelThree();
   } else if (level == 4) {
-    drawLevelFour(1550, 820);
+    drawLevelFour();
   } else if (level == 5) {
     drawLevelFive();
   } else if (level == 6) {
@@ -142,7 +144,7 @@ void drawMenuScreen() {
 
 //put the play logic method in the main class, i didnt do it cuz i didnt want to override anyone elses work in github
 void playLogic() {//only draws the last move, not all moves in succession
-if(mouseX >= 0 && mouseX <= (width/3) + (width/15) && mouseY >= 13.5 * (height/15) && mouseY <= height ) {
+if(mouseX >= 0 && mouseX <= (width/3) + (width/15) && mouseY >= 13.5 * (height/15) && mouseY <= height && mousePressed) {
     //the above conditional checks 
     blockOne.runLine(blockOne.blockText); 
     //Dont uncomment this until all of the classes have been initialized
@@ -187,37 +189,99 @@ void drawLevelOne() {
 }
 
 void drawLevelTwo() {
+  compSciMain.jonesX = 820;
+  compSciMain.jonesY = 840;
   push();
-  scale(.5);
-  image(LevelTwo,4 *(width/5), height/7.5);
+  scale(.5);//this is how to properly scale all the imagery (just this line).
+  image(LevelTwo, 4 *(width/5), height/7.5);
+  image(IndianaJones, compSciMain.jonesX, compSciMain.jonesY);
   pop();
-  blockOne.drawBlock();
+  fill(#7b9095);
+  rect(0, 0, width/3, height); 
+  blockOne.drawBlock();//draws 'scratch blocks'
   blockTwo.drawBlock();
-  //playLogic(jonesX, jonesY); IDK where to put it, I assume all the other ones must change as well
+  blockThree.drawBlock();
+  blockFour.drawBlock();
+  blockFive.drawBlock();
+  blockSix.drawBlock();
+  blockSeven.drawBlock();
+  blockEight.drawBlock();
+  blockNine.drawBlock();
+  blockTen.drawBlock();
+  drawBackground();//draws the green button etc.
+  playLogic();//runs the actual button logic when the grren button is pressed
 }
 
 void drawLevelThree() {
+  compSciMain.jonesX = 820;
+  compSciMain.jonesY = 840;
+  push();
+  scale(.5);//this is how to properly scale all the imagery (just this line).
+  image(LevelTwo, 4 *(width/5), height/7.5);
+  image(IndianaJones, compSciMain.jonesX, compSciMain.jonesY);
+  pop();
+  fill(#7b9095);
+  rect(0, 0, width/3, height); 
+  blockOne.drawBlock();//draws 'scratch blocks'
+  blockTwo.drawBlock();
+  blockThree.drawBlock();
+  blockFour.drawBlock();
+  blockFive.drawBlock();
+  blockSix.drawBlock();
+  blockSeven.drawBlock();
+  blockEight.drawBlock();
+  blockNine.drawBlock();
+  blockTen.drawBlock();
+  drawBackground();//draws the green button etc.
+  playLogic();//runs the actual button logic when the grren button is pressed
 }
 
-void drawLevelFour(int jonesX, int jonesY) {
+void drawLevelFour() {
+  compSciMain.jonesX = 1500;
+  compSciMain.jonesY = 860;
   push();
-  scale(.5);
-  image(LevelFour,4 *(width/5), height/7.5);
+  scale(.5);//this is how to properly scale all the imagery (just this line).
+  image(LevelFour, 4 *(width/5), height/7.5);
+  image(IndianaJones, compSciMain.jonesX, compSciMain.jonesY);
   pop();
-  image(IndianaJones, jonesX, jonesY);
-  blockOne.drawBlock();
+  fill(#7b9095);
+  rect(0, 0, width/3, height); 
+  blockOne.drawBlock();//draws 'scratch blocks'
   blockTwo.drawBlock();
-  playLogic();
+  blockThree.drawBlock();
+  blockFour.drawBlock();
+  blockFive.drawBlock();
+  blockSix.drawBlock();
+  blockSeven.drawBlock();
+  blockEight.drawBlock();
+  blockNine.drawBlock();
+  blockTen.drawBlock();
+  drawBackground();//draws the green button etc.
+  playLogic();//runs the actual button logic when the grren button is pressed
 }
 
 void drawLevelFive() {
+ compSciMain.jonesX = 800;
+  compSciMain.jonesY = 620;
   push();
-  scale(.5);
-  image(LevelFive,4 *(width/5), height/7.5);
+  scale(.5);//this is how to properly scale all the imagery (just this line).
+  image(LevelFive, 4 *(width/5), height/7.5);
+  image(IndianaJones, compSciMain.jonesX, compSciMain.jonesY);
   pop();
-  blockOne.drawBlock();
+  fill(#7b9095);
+  rect(0, 0, width/3, height); 
+  blockOne.drawBlock();//draws 'scratch blocks'
   blockTwo.drawBlock();
-  //playLogic(jonesX, jonesY);
+  blockThree.drawBlock();
+  blockFour.drawBlock();
+  blockFive.drawBlock();
+  blockSix.drawBlock();
+  blockSeven.drawBlock();
+  blockEight.drawBlock();
+  blockNine.drawBlock();
+  blockTen.drawBlock();
+  drawBackground();//draws the green button etc.
+  playLogic();//runs the actual button logic when the grren button is pressed
 }
 
 void drawGameOver() {
@@ -244,13 +308,24 @@ void mouseClicked() {
 }
 
 void drawTutorial() {
-  image(IndianaJones, width/3+570, 500);
-  blockOne.drawBlock();
+  push();
+  scale(.5);//this is how to properly scale all the imagery (just this line).
+  image(IndianaJones, 1400, 500);
+  pop();
+  blockOne.drawBlock();//draws 'scratch blocks'
   blockTwo.drawBlock();
+  blockThree.drawBlock();
+  blockFour.drawBlock();
+  blockFive.drawBlock();
+  blockSix.drawBlock();
+  blockSeven.drawBlock();
+  blockEight.drawBlock();
+  blockNine.drawBlock();
+  blockTen.drawBlock();
   playLogic();
   fill(#FFFFFF);
-  textSize(30);
-  text("  Click the dotted lines to change the direction to where you want to go in \norder from your first move to its last. When you're ready to run it, click play.\n                            Practice moving around the empty space.", width/3+90, height/6);
+  textSize(15);
+  text("  Click the dotted lines to change the direction to where you want to go in \norder from your first move to its last. When you're ready to run it, click play.\n                            Practice moving around the empty space.", 320*width/900, height/6);
 }
   
   //this is the universal logic background.
