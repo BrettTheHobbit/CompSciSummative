@@ -8,10 +8,7 @@ You can keep moving around "Logic Blocks" until you are satisfied with the outco
 /*TODO LIST
 Wait time between movement (the character just appears at the end)
 charachter select screen
-last level
 collisions (borders and win con)
-I dont know if the wait function works or not... i dont think it does
-Scaling issue from menu screen to level one.
 */
 
 import processing.sound.*;
@@ -27,6 +24,7 @@ int savedLevel;
 boolean soundLock = false;//this ensures that songs won't be played over and over again in a draw loop. Also dont put songs in the drawloop unless you want crazy feedback.
 boolean GOsoundLock = false;//this is the game over version
 boolean levelOneSetup = false;
+boolean levelTwoSetup = false;
 
 PImage LevelOne;
 PImage LevelTwo;
@@ -191,30 +189,30 @@ void drawMenuScreen() {
 //put the play logic method in the main class, i didnt do it cuz i didnt want to override anyone elses work in github
 void playLogic() {//only draws the last move, not all moves in succession
 if(mouseX >= 0 && mouseX <= (width/3) + (width/15) && mouseY >= 13.5 * (height/15) && mouseY <= height && mousePressed) {
-    levelOneSetup = false;
     //the above conditional checks 
-    blockOne.runLine(blockOne.blockText); 
+    levelOneSetup = false;
+    } if (levelOneSetup == false && level == 1) {
+      blockOne.runLine(blockOne.blockText); 
     //Dont uncomment this until all of the classes have been initialized
-    wait(900);//should be 1.5 seconds this dont work
-    blockTwo.runLine(blockTwo.blockText); 
-    blockThree.runLine(blockThree.blockText); 
-    blockFour.runLine(blockFour.blockText); 
-    blockFive.runLine(blockFive.blockText); 
-    blockSix.runLine(blockSix.blockText);
-    blockSeven.runLine(blockSeven.blockText);  
-    blockEight.runLine(blockEight.blockText); 
-    blockNine.runLine(blockNine.blockText); 
-    blockTen.runLine(blockTen.blockText);
+      wait(900);//should be 1.5 seconds this dont work
+      blockTwo.runLine(blockTwo.blockText); 
+      blockThree.runLine(blockThree.blockText); 
+      blockFour.runLine(blockFour.blockText); 
+      blockFive.runLine(blockFive.blockText); 
+      blockSix.runLine(blockSix.blockText);
+      blockSeven.runLine(blockSeven.blockText);  
+      blockEight.runLine(blockEight.blockText); 
+      blockNine.runLine(blockNine.blockText); 
+      blockTen.runLine(blockTen.blockText);
    // action.detectWin();//this might be messed up, remove this if error occurs. 
-    
     }
 }
 
 void drawLevelOne() {
-  if (levelOneSetup) {
-  rectMode(CORNER);
   compSciMain.jonesX = 990;
   compSciMain.jonesY = 870;
+  if (levelOneSetup) {
+  rectMode(CORNER);
   push();
   scale(.5);//this is how to properly scale all the imagery (just this line).
   image(LevelOne, 4 *(width/5), height/5.5);
