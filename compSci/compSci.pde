@@ -4,6 +4,15 @@ The game is split up into two different states, the logic and the action. The lo
 You can keep moving around "Logic Blocks" until you are satisfied with the outcome and you think you can reach the end, then you press the start button and your logic affects what happens to the action screen.
 */
 
+
+/*TODO LIST
+Wait time between movement (the character just appears at the end)
+charachter select screen
+button click is incorrect, try moving it to mouse pressed imo (playLogic condition)
+last level
+collisions (borders and win con)
+I dont know if the wait function works or not... i dont think it does
+*/
 import processing.sound.*;
 
 SoundFile intro;
@@ -16,7 +25,6 @@ int savedLevel;
 
 boolean soundLock = false;//this ensures that songs won't be played over and over again in a draw loop. Also dont put songs in the drawloop unless you want crazy feedback.
 boolean GOsoundLock = false;//this is the game over version
-boolean clickGo = false;//this is used to stop the constant movement of the sprite
 
 PImage LevelOne;
 PImage LevelTwo;
@@ -38,7 +46,7 @@ Block blockEight = new Block(xPos, yPos + (49 * height/15));
 Block blockNine = new Block(xPos, yPos + (56 * height/15));
 Block blockTen = new Block(xPos, yPos + (63 * height/15));
 
-static class compSci {
+static class compSciMain {
   static int jonesX, jonesY;
 }
   
@@ -138,7 +146,7 @@ if(mouseX >= 0 && mouseX <= (width/3) + (width/15) && mouseY >= 13.5 * (height/1
     //the above conditional checks 
     blockOne.runLine(blockOne.blockText); 
     //Dont uncomment this until all of the classes have been initialized
-    wait(90);//should be 1.5 seconds
+    wait(900);//should be 1.5 seconds this dont work
     blockTwo.runLine(blockTwo.blockText); 
     blockThree.runLine(blockThree.blockText); 
     blockFour.runLine(blockFour.blockText); 
@@ -150,17 +158,16 @@ if(mouseX >= 0 && mouseX <= (width/3) + (width/15) && mouseY >= 13.5 * (height/1
     blockTen.runLine(blockTen.blockText);
    // action.detectWin();//this might be messed up, remove this if error occurs. 
     
-    clickGo = false;//this is so the logic isn't accidentally looped through mouse clicks
-  }
+    }
 }
 
 void drawLevelOne() {
-  compSci.jonesX = 990;
-  compSci.jonesY = 870;
+  compSciMain.jonesX = 990;
+  compSciMain.jonesY = 870;
   push();
   scale(.5);//this is how to properly scale all the imagery (just this line).
   image(LevelOne, 4 *(width/5), height/7.5);
-  image(IndianaJones, compSci.jonesX, compSci.jonesY);
+  image(IndianaJones, compSciMain.jonesX, compSciMain.jonesY);
   pop();
   fill(#7b9095);
   rect(0, 0, width/3, height); 
