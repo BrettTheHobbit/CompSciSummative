@@ -8,7 +8,6 @@ You can keep moving around "Logic Blocks" until you are satisfied with the outco
 /*TODO LIST
 Wait time between movement (the character just appears at the end)
 charachter select screen
-button click is incorrect, try moving it to mouse pressed imo (playLogic condition)
 last level
 collisions (borders and win con)
 I dont know if the wait function works or not... i dont think it does
@@ -27,6 +26,7 @@ int savedLevel;
 
 boolean soundLock = false;//this ensures that songs won't be played over and over again in a draw loop. Also dont put songs in the drawloop unless you want crazy feedback.
 boolean GOsoundLock = false;//this is the game over version
+boolean levelOneSetup = false;
 
 PImage LevelOne;
 PImage LevelTwo;
@@ -180,6 +180,7 @@ void drawMenuScreen() {
   textAlign(CORNER, CORNER);
   if (mousePressed) {
     level = 1;
+    levelOneSetup = true;
   } else if(keyPressed && (key == 's' || key == 'S')) {//refers to the select screen
     level = 8;
   } else if(keyPressed && (key == 'l' || key == 'L')) {//refers to loading a save
@@ -190,6 +191,7 @@ void drawMenuScreen() {
 //put the play logic method in the main class, i didnt do it cuz i didnt want to override anyone elses work in github
 void playLogic() {//only draws the last move, not all moves in succession
 if(mouseX >= 0 && mouseX <= (width/3) + (width/15) && mouseY >= 13.5 * (height/15) && mouseY <= height && mousePressed) {
+    levelOneSetup = false;
     //the above conditional checks 
     blockOne.runLine(blockOne.blockText); 
     //Dont uncomment this until all of the classes have been initialized
@@ -209,14 +211,16 @@ if(mouseX >= 0 && mouseX <= (width/3) + (width/15) && mouseY >= 13.5 * (height/1
 }
 
 void drawLevelOne() {
+  if (levelOneSetup) {
   rectMode(CORNER);
   compSciMain.jonesX = 990;
   compSciMain.jonesY = 870;
   push();
   scale(.5);//this is how to properly scale all the imagery (just this line).
-  image(LevelOne, 4 *(width/5), height/7.5);
+  image(LevelOne, 4 *(width/5), height/5.5);
   image(IndianaJones, compSciMain.jonesX, compSciMain.jonesY);
   pop();
+  }
   fill(#7b9095);
   rect(0, 0, width/3, height); 
   blockOne.drawBlock();//draws 'scratch blocks'
