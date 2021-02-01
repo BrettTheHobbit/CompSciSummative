@@ -4,12 +4,45 @@ This class displays the puzzle action. checking if the player and idol are touch
 
 //static class action was removed cuz it had nothing in it.
 
-void level1Hit(){//will detect if you reach the end of the first level
- if(get (compSciMain.jonesX+60, compSciMain.jonesY+65) == color (109, 76, 65) || get (compSciMain.jonesX+60, compSciMain.jonesY+65) == color (0, 0, 0)){
-   compSciMain.jonesX = compSciMain.jonesX - 50;
-   compSciMain.jonesY = compSciMain.jonesY - 50;
+void level1Hit(){
+ if(compSciMain.jonesX >= 670 * 1.9 && compSciMain.jonesY >= 450 * 1.8 && compSciMain.jonesY <= 515 * 1.8){ // bottom right brown
+  // start at begining
+ }
+ if(compSciMain.jonesX >= 560 * 1.9 && compSciMain.jonesX <= 675 * 1.9 && compSciMain.jonesY <= 450 * 1.9 && compSciMain.jonesY >= 380 * 1.8){ // bottom right top brown
+  // start at begining
+ }
+   if(compSciMain.jonesX <= 390 * 1.9 && compSciMain.jonesY >= 450 * 1.8 && compSciMain.jonesY <= 520 * 1.8){ // lower left black
+   // start at begining
+ }
+ if(compSciMain.jonesX >= 385 * 1.9 && compSciMain.jonesX <= 500 * 1.9 && compSciMain.jonesY <= 450 * 1.9 && compSciMain.jonesY >= 380 * 1.8){ // bottom left top brown
+   // start at begining
+ }
+ if(compSciMain.jonesX >= 385 * 1.9 && compSciMain.jonesX <= 660 * 1.9 && compSciMain.jonesY >= 84 * 1.9 && compSciMain.jonesY <= 280 * 1.8){ // middle gray area
+ // start at begining
+ }
+ if(compSciMain.jonesX >= 780 * 1.9 && compSciMain.jonesX <= 835 * 1.9 && compSciMain.jonesY >= 84 * 1.9 && compSciMain.jonesY <= 280 * 1.8){ // right side grey area
+  // start at begining
+   }
+   if(compSciMain.jonesX <= 360 * 1.9 || compSciMain.jonesX >= 860 * 1.9 || compSciMain.jonesY >= 540 * 1.9 || compSciMain.jonesY <= 80 * 1.9){ // border
+   // start at begining
+  }
+}
+
+void levelFourHit(){
+    if(compSciMain.jonesX <= 360 * 1.9 || compSciMain.jonesX >= 860 * 1.9 || compSciMain.jonesY >= 540 * 1.9 || compSciMain.jonesY <= 80 * 1.9){ // border
+   // start at begining
+  }
+   if(compSciMain.jonesX >= 520 * 1.9 && compSciMain.jonesX <= 835 * 1.9 && compSciMain.jonesY >= 70 * 1.9 && compSciMain.jonesY <= 230 * 1.8){ // middle gray area
+ // start at begining
+ }
+   if(compSciMain.jonesX >= 715 * 1.9 && compSciMain.jonesX <= 835 * 1.9 && compSciMain.jonesY >= 240 * 1.9 && compSciMain.jonesY <= 410 * 1.8){ // left gray area
+ // start at begining
+ }
+    if(compSciMain.jonesX >= 615 * 1.9 && compSciMain.jonesX <= 625 * 1.9 && compSciMain.jonesY >= 340 * 1.9 && compSciMain.jonesY <= 515 * 1.8){ // middle gray area
+ // start at begining
  }
 }
+
 //ALL FOUR OF THESE 
 void moveLeft() {
   if (level == 1){
