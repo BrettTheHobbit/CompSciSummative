@@ -53,7 +53,6 @@ static class compSciMain {
 
 void setup() {
     
-  println((height/15));
   IndianaJones = loadImage("IndianaJones.png");
   IndianaJonesLeft = loadImage("IndianaJonesLeft.png");
   IndianaJonesRight = loadImage("IndianaJonesRight.png");
@@ -72,43 +71,61 @@ void setup() {
 }
 
 public void settings() {
-
   size(900, 600);
 } 
 
 void draw() {
-  
-  background(#5d5c73);
-  
-  if (level == 0) {
-    drawMenuScreen();
-  } else if (level == 1) {
-    /* if(soundLock == false) {
+  background(#5d5c73); //gives that light purple background
+  switch(level) {//swapped out the if statement for simplicity sake
+   case 0:
+     drawMenuScreen();
+     break; //the break prevents overflow from the other cases
+   case 1:
+     /* if(soundLock == false) {
       intro.stop();//stops the intro music, will now play the main music
       mainSound.play();
       mainSound.loop();
       soundLock = true;//this can never be accessed again 
     } */
-    drawLevelOne();
-  } else if (level == 2) {
-    drawLevelTwo();
-  } else if (level == 3) {
-    drawLevelThree();
-  } else if (level == 4) {
-    drawLevelFour(1550, 820);
-  } else if (level == 5) {
-    drawLevelFive();
-  } else if (level == 6) {
-    drawGameOver();
-    /* if(GOsoundLock == false) {
+     drawLevelOne();
+     break;
+   case 2:
+     drawLevelTwo();
+     break;
+   case 3:
+     drawLevelThree();
+     break;
+   case 4:
+     drawLevelFour(1550, 820);
+     break;
+   case 5:
+     drawLevelFive();
+     break;
+   case 6:
+     /* if(GOsoundLock == false) {
       //mainSound.stop();//stops the normal game sound at this point and plays game over sound
       //gameOverSound.play();//there is no stop to this. This tune will continue forever and I dont know where to stop it *BUG WARNING*
       //gameOverSound.loop();
       GOsoundLock = true;
     } */
-  } else if (level == 7) {
-    drawTutorial();
+     drawGameOver();
+     break;
+   case 7:
+     drawTutorial();
+     break;
+   case 8:
+     drawSelectScreen();//selects which levels to play
+     break;
+   case 9:
+     drawLoadGame();//will load the game from the written file class
   }
+}
+void drawSelectScreen() {
+  
+}
+
+void drawLoadGame() {
+  
 }
 
 void drawMenuScreen() {
@@ -130,13 +147,25 @@ void drawMenuScreen() {
   fill(155);
   text("Logic Quest", width/2,150);
   textSize(width/50);
-  text("Press Anywhere to continue", width/2, height/2.4);
+  text("Click Anywhere to continue", width/2, height/2.4);
   
   image(img, width/2, height/1.34);
   image(img2, width/2, height/1.67);
   
+  textSize(width/35);
+  fill(#3a3b69);
+  rect(width/4.5, height/1.75, 200, 100);
+  rect(width/1.35, height/1.75, 200, 100);
+  fill(155);
+  text("Press 'S'\n to select a level!", width/4.5, height/1.75);
+  text("Press 'L'\n to load a save!", width/1.35, height/1.75);
+  
   if (mousePressed) {
     level = 1;
+  } else if(keyPressed && (key == 's' || key == 'S')) {//refers to the select screen
+    level = 8;
+  } else if(keyPressed && (key == 'l' || key == 'L')) {//refers to loading a save
+    level = 9;
   }
 }
 
@@ -162,6 +191,7 @@ if(mouseX >= 0 && mouseX <= (width/3) + (width/15) && mouseY >= 13.5 * (height/1
 }
 
 void drawLevelOne() {
+  rectMode(CORNER);
   compSciMain.jonesX = 990;
   compSciMain.jonesY = 870;
   push();
