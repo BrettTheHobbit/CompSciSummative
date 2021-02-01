@@ -199,7 +199,7 @@ void drawLevelOne() {
   compSciMain.jonesY = 870;
   push();
   scale(.5);//this is how to properly scale all the imagery (just this line).
-  image(LevelOne, 4 *(width/5), height/5.5);
+  image(LevelOne, 4 *(width/5), height/7.5);
   image(IndianaJones, compSciMain.jonesX, compSciMain.jonesY);
   pop();
   fill(#7b9095);
