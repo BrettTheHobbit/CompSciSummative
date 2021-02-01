@@ -21,7 +21,7 @@ SoundFile intro;
 SoundFile mainSound; //game sound one couldnt be decoded
 SoundFile gameOverSound;
 
-int level = 0;
+int level = 8;
 int xPos, yPos = 10;
 int savedLevel;
 
@@ -131,13 +131,28 @@ void drawSelectScreen() {
     scale(0.125);//makes the levels into thumbnail sizes
     image(LevelOne, width, height*2);
     image(LevelTwo, width * 3.25, height * 2);//uncomment the third level when added.
-    image(LevelFour, width * 5.5, height * 2);
+    //image(LevelFour, width * 5.5, height * 2);
     image(LevelFour, width * 2.125, height * 5);
     image(LevelFive, width * 4.5, height * 5);
   pop();
   text("<---- Back", 0, height);
-  //textSize(width/10);
-  text("Level One", width/4, height/2);
+  textSize(width/45);
+  text("Level One", width/7, height/2);
+  text("Level Two", width/2.35, height/2);
+  text("Level Three", width/1.435, height/2);
+  text("Level Four", width/3.5, height/1.14);
+  text("Level Five", width/1.75, height/1.14);
+  if(mousePressed && mouseX > width/8 && mouseX < (width/8) + 125 && mouseY > (height * 2)/8 && mouseY < (height * 2)/8 + 125) {
+    level = 1;
+  } else if(mousePressed && mouseX > (width * 3.25)/8 && mouseX < ((width*3.25)/8) + 125 && mouseY > (height * 2)/8 && mouseY < (height * 2)/8 + 125) {
+    level = 2;
+  } else if(mousePressed && mouseX > (width * 5.5)/8 && mouseX < ((width * 5.5)/8) + 125 && mouseY > (height * 2)/8 && mouseY < (height * 2)/8 + 125) {
+    level = 3;//this takes you to the same level as two
+  } else if(mousePressed && mouseX > (width * 2.125)/8 && mouseX < ((width * 2.125)/8) + 125 && mouseY > (height * 5)/8 && mouseY < (height * 5)/8 + 125) {
+    level = 4;
+  } else if(mousePressed && mouseX > (width * 4.5)/8 && mouseX < ((width * 4.5)/8) + 125 && mouseY > (height * 5)/8 && mouseY < (height * 5)/8 + 125) {
+    level = 5; 
+  }
 }
 
 void drawLoadGame() {
@@ -175,7 +190,7 @@ void drawMenuScreen() {
   fill(155);
   text("Press 'S'\n to select a level!", width/4.5, height/1.75);
   text("Press 'L'\n to load a save!", width/1.35, height/1.75);
-  rectMode(CORNER);
+  rectMode(CORNER);//resets the modes in order to save the scaling for level one
   imageMode(CORNER);
   textAlign(CORNER, CORNER);
   if (mousePressed) {
