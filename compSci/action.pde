@@ -5,102 +5,74 @@ This class displays the puzzle action. checking if the player and idol are touch
 //static class action was removed cuz it had nothing in it.
 
 void level1Hit(){//all of these just put him back at the start
- if(compSciMain.jonesX >= 670 * 1.9 && compSciMain.jonesY >= 450 * 1.8 && compSciMain.jonesY <= 515 * 1.8){ // bottom right brown
+ if(compSciMain.jonesX >= 670 * 1.9 && compSciMain.jonesY >= 450 * 1.8 && compSciMain.jonesY <= 515 * 1.8){ // bottom right area
     displayWarning();
-    drawLevelOne();
  }
  if(compSciMain.jonesX >= 560 * 1.9 && compSciMain.jonesX <= 675 * 1.9 && compSciMain.jonesY <= 450 * 1.9 && compSciMain.jonesY >= 380 * 1.8){ // bottom right top brown
-    drawLevelOne();
     displayWarning();
  }
-   if(compSciMain.jonesX <= 390 * 1.9 && compSciMain.jonesY >= 450 * 1.8 && compSciMain.jonesY <= 520 * 1.8){ // lower left black
-     drawLevelOne();
-     displayWarning();
- }
  if(compSciMain.jonesX >= 385 * 1.9 && compSciMain.jonesX <= 500 * 1.9 && compSciMain.jonesY <= 450 * 1.9 && compSciMain.jonesY >= 380 * 1.8){ // bottom left top brown
-     drawLevelOne();
      displayWarning();
  }
  if(compSciMain.jonesX >= 385 * 1.9 && compSciMain.jonesX <= 660 * 1.9 && compSciMain.jonesY >= 84 * 1.9 && compSciMain.jonesY <= 280 * 1.8){ // middle gray area
-   drawLevelOne();
    displayWarning();
  }
  if(compSciMain.jonesX >= 780 * 1.9 && compSciMain.jonesX <= 835 * 1.9 && compSciMain.jonesY >= 84 * 1.9 && compSciMain.jonesY <= 280 * 1.8){ // right side grey area
-    drawLevelOne();
     displayWarning();
   }
    if(compSciMain.jonesX <= 360 * 1.9 || compSciMain.jonesX >= 860 * 1.9 || compSciMain.jonesY >= 540 * 1.9 || compSciMain.jonesY <= 80 * 1.9){ // border
-     compSciMain.jonesX = 990;
-     compSciMain.jonesY = 870;
      displayWarning();
   }
 }
 
 void levelThreeHit(){
   if(compSciMain.jonesX <= 370 * 1.8 || compSciMain.jonesX >= 800 * 1.8 || compSciMain.jonesY >= 480 * 1.2 || compSciMain.jonesY <= 85 * 1.2){ // border
-  compSciMain.jonesX = 820;
-  compSciMain.jonesY = 840;
    displayWarning();
   }
    if(compSciMain.jonesX >= 385 * 1.8 && compSciMain.jonesX <= 705 * 1.8 && compSciMain.jonesY >= 175 * 1.2 && compSciMain.jonesY <= 260 * 1.2){ // area under character
    displayWarning();
-   drawLevelThree();
    }
   if(compSciMain.jonesX >= 655 * 1.8 && compSciMain.jonesX <= 800 * 1.8 && compSciMain.jonesY >= 350 * 1.2 && compSciMain.jonesY <= 480 * 1.2){ // area right of gold
    displayWarning();
-   drawLevelThree();
    }
   if(compSciMain.jonesX >= 490 * 1.8 && compSciMain.jonesX <= 555 * 1.8 && compSciMain.jonesY >= 350 * 1.2 && compSciMain.jonesY <= 370 * 1.2){ // small area near gold
    displayWarning();
-   drawLevelThree();
    }
 }
 
 void levelFourHit(){
     if(compSciMain.jonesX <= 360 * 1.9 || compSciMain.jonesX >= 860 * 1.9 || compSciMain.jonesY >= 540 * 1.9 || compSciMain.jonesY <= 80 * 1.9){ // border
-    compSciMain.jonesX = 1500;
-    compSciMain.jonesY = 860;
     displayWarning();
   }
    if(compSciMain.jonesX >= 520 * 1.9 && compSciMain.jonesX <= 835 * 1.9 && compSciMain.jonesY >= 70 * 1.9 && compSciMain.jonesY <= 230 * 1.8){ // middle gray area
     displayWarning();
-    drawLevelFour();
  }
    if(compSciMain.jonesX >= 715 * 1.9 && compSciMain.jonesX <= 835 * 1.9 && compSciMain.jonesY >= 240 * 1.9 && compSciMain.jonesY <= 410 * 1.8){ // left gray area
     displayWarning();
-    drawLevelFour();
  }
     if(compSciMain.jonesX >= 615 * 1.9 && compSciMain.jonesX <= 625 * 1.9 && compSciMain.jonesY >= 340 * 1.9 && compSciMain.jonesY <= 515 * 1.8){ // middle gray area
     displayWarning();
-    drawLevelFour();
  }
 }
 
 void levelFiveHit(){
     if(compSciMain.jonesX <= 360 * 1.8 || compSciMain.jonesX >= 860 * 1.8 || compSciMain.jonesY >= 540 * 1.8 || compSciMain.jonesY <= 40 * 1.8){ // border
-  compSciMain.jonesX = 800;
-  compSciMain.jonesY = 620;
   displayWarning();
   }
    if(compSciMain.jonesX >= 385 * 1.8 && compSciMain.jonesX <= 835 * 1.8 && compSciMain.jonesY >= 70 * 1.8 && compSciMain.jonesY <= 195 * 1.8){ // top blue area
    displayWarning();
-   drawLevelFive();
  }
    if(compSciMain.jonesX >= 705 * 1.8 && compSciMain.jonesX <= 835 * 1.8 && compSciMain.jonesY >= 200 * 1.8 && compSciMain.jonesY <= 330 * 1.8){ // middle right blue area
    displayWarning();
-   drawLevelFive();
  }
     if(compSciMain.jonesX >= 775 * 1.8 && compSciMain.jonesX <= 835 * 1.8 && compSciMain.jonesY >= 330 * 1.8 && compSciMain.jonesY <= 515 * 1.8){ // bottom right blue area (near key)
    displayWarning();
-   drawLevelFive();
  }
   if(compSciMain.jonesX >= 385 * 1.8 && compSciMain.jonesX <= 775 * 1.8 && compSciMain.jonesY >= 460 * 1.8){ // bottom blue area (below key)
    displayWarning();
-   drawLevelFive();
  }
   if(compSciMain.jonesX >= 385 * 1.8 && compSciMain.jonesX <= 705 * 1.8 && compSciMain.jonesY >= 400 * 1.8){ // below start
    displayWarning();
-   drawLevelFive();
  }
 }
 
@@ -200,4 +172,20 @@ void displayWarning() {
  fill(#af2020); 
  textSize(width/25);
  text("Nice Try! - Keep Steven safe", width/2.75, height/1.01);
+  if(level == 1){
+  compSciMain.jonesX = 990;
+  compSciMain.jonesY = 870;
+ }
+ if(level == 3){
+  compSciMain.jonesX = 820;
+  compSciMain.jonesY = 840;
+ }
+ if(level == 4){
+  compSciMain.jonesX = 1500;
+  compSciMain.jonesY = 860;
+ }
+ if(level == 5){
+  compSciMain.jonesX = 800;
+  compSciMain.jonesY = 620;
+ }
 }
