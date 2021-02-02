@@ -213,8 +213,8 @@ void displayWarning() {
   compSciMain.jonesY = 870;
  }
  if(level == 3){
-  compSciMain.jonesX = 820;
-  compSciMain.jonesY = 840;
+  compSciMain.jonesX = 810;
+  compSciMain.jonesY = 150;
  }
  if(level == 4){
   compSciMain.jonesX = 1500;
