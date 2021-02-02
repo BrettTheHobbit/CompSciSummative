@@ -218,23 +218,23 @@ if(mouseX >= 0 && mouseX <= (width/3) + (width/15) && mouseY >= 13.5 * (height/1
     } if (levelOneSetup == false && level == 1) {
       blockOne.runLine(blockOne.blockText); 
     //Dont uncomment this until all of the classes have been initialized
-      wait(90);//should be 1.5 seconds this dont work
+      //wait(90);//should be 1.5 seconds this dont work
       blockTwo.runLine(blockTwo.blockText); 
-      wait(90);
+     // wait(90);
       blockThree.runLine(blockThree.blockText); 
-      wait(90);
+      //wait(90);
       blockFour.runLine(blockFour.blockText); 
-      wait(90);
+      //wait(90);
       blockFive.runLine(blockFive.blockText); 
-      wait(90);
+      //wait(90);
       blockSix.runLine(blockSix.blockText);
-      wait(90);
+      //wait(90);
       blockSeven.runLine(blockSeven.blockText); 
-      wait(90);
+      //wait(90);
       blockEight.runLine(blockEight.blockText); 
-      wait(90);
+     // wait(90);
       blockNine.runLine(blockNine.blockText); 
-      wait(90);
+      //wait(90);
       blockTen.runLine(blockTen.blockText);
    // action.detectWin();//this might be messed up, remove this if error occurs. 
     }
