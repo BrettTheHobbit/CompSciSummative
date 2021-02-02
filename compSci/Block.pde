@@ -36,6 +36,7 @@ class Block { //The block class is used to instantiate 10 blocks that when click
   }
   
   void drawBlock() {
+   this.blockText = "________";
    fill(#6a9aa6);//These two lines are the blocks.
    rect(this.blockX, this.blockY,width/3,height/15);
    fill(#ffffff);//the text for the blocks \/  \/

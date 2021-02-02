@@ -90,7 +90,6 @@ void levelFiveHit(){
 
 //ALL FOUR OF THESE 
 void moveLeft() {
-  wait(100);
   if (level == 1){
     push();
     scale(.5);
@@ -109,7 +108,6 @@ void moveLeft() {
 }
 
 void moveRight() {
-  wait(100);
   if(level == 1){
     compSciMain.jonesX = compSciMain.jonesX + 200;
     push();
@@ -132,7 +130,6 @@ void moveRight() {
 }
 
 void moveForwards() {
-  wait(100);
   if(level == 1){
     push();
     scale(.5);
@@ -155,7 +152,6 @@ void moveForwards() {
 }
 
 void moveBackwards() {
-  wait(100);
   if(level == 1){
     push();
     scale(.5);
@@ -165,7 +161,7 @@ void moveBackwards() {
     pop();
     blockOne.drawBlock();
     blockTwo.drawBlock();
-    wait(100);
+    
   } else if (level == 7) {
     background(33);
     blockOne.drawBlock();
@@ -175,7 +171,6 @@ void moveBackwards() {
     text("  Click the dotted lines to change the direction to where you want to go in \norder from your first move to its last. When you're ready to run it, click play.\n                            Practice moving around the empty space.", width/3+90, height/6);
     compSciMain.jonesY = compSciMain.jonesY + 175;
     image(IndianaJones, compSciMain.jonesX, compSciMain.jonesY);
-    wait(100);
   }
 }
 
@@ -184,7 +179,6 @@ void detectWin() {
   fill(#4a9e3a);
   textSize(width/25);
   text("Hooray! You found the treasure!", width/2.75, height/1.01);
-  wait(200);
   level++;
   saveProgress(level);//saves the current level + 1 to catch you up to speed when you finish the level
  }
