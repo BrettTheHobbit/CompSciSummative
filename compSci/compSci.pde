@@ -248,6 +248,7 @@ void playLogic() {//only draws the last move, not all moves in succession
 }
 
 void drawLevelOne() {
+  resetBlocks();
   compSciMain.jonesX = 990;
   compSciMain.jonesY = 870;
   if (levelOneSetup) {
@@ -277,6 +278,7 @@ void drawLevelOne() {
 }
 
 void drawLevelTwo() {
+  resetBlocks();
   compSciMain.jonesX = 820;
   compSciMain.jonesY = 840;
   push();
@@ -301,6 +303,7 @@ void drawLevelTwo() {
 }
 
 void drawLevelThree() {
+  resetBlocks();
   compSciMain.jonesX = 820;
   compSciMain.jonesY = 840;
   push();
@@ -327,6 +330,7 @@ void drawLevelThree() {
 }
 
 void drawLevelFour() {
+  resetBlocks();
   compSciMain.jonesX = 1500;
   compSciMain.jonesY = 860;
   push();
@@ -353,6 +357,7 @@ void drawLevelFour() {
 }
 
 void drawLevelFive() {
+  resetBlocks();
   compSciMain.jonesX = 800;
   compSciMain.jonesY = 620;
   push();
@@ -439,6 +444,19 @@ void drawBackground() {//all of this just draws the UI on the left side of the s
   triangle((width/3.15) - 20, 17.4 * height/15, (width/3.15) - 20, 18.2 * height/15, (width/3.15) + 80, 17.8 * height/15);
   noStroke();//play triangle
   pop();
+}
+
+void resetBlocks() {//should allow the text to be reset when changing between stages
+  blockOne.blockText = "________";
+  blockTwo.blockText = "________";
+  blockThree.blockText = "________";
+  blockFour.blockText = "________";
+  blockFive.blockText = "________";
+  blockSix.blockText = "________";
+  blockSeven.blockText = "________";
+  blockEight.blockText = "________";
+  blockNine.blockText = "________";
+  blockTen.blockText = "________";
 }
 
 void wait(int timeToWait) {//is used to delay the program, mainly for animations
