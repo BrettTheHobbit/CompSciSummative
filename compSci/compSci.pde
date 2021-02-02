@@ -2,10 +2,13 @@
 The idea of this educational game is to teach younger children about logic by gameifying it.
 The game is split up into two different states, the logic and the action. The logic screen is where you can move around "Logic Blocks" which changes what happens on the "Action Screen"
 You can keep moving around "Logic Blocks" until you are satisfied with the outcome and you think you can reach the end, then you press the start button and your logic affects what happens to the action screen.
-*/
 
-
-/*TODO LIST
+TODO LIST:
+The filereader/writer doesnt write to the file in the repository, it either doesn't write or writes to the wrong file and someone has a text file with 69 in it
+in the move backwards method, why are only the first two blocks drawn? are they all supposed to be drawn?
+I also left the program going for 10 mins-ish and a stackoverflow happened
+If i input nothing, then the image disappears
+After playing the first level, the actions that you input dont work
 Wait time between movement (the character just appears at the end)
 save/load functionality
 collisions (borders and win con)
@@ -17,9 +20,9 @@ SoundFile intro;
 SoundFile mainSound; //game sound one couldnt be decoded
 SoundFile gameOverSound;
 
-int level = 8;
+int level = 0;
 int xPos, yPos = 10;
-int savedLevel;
+//int savedLevel = 1;//starter is on one but will autosave after every level completetion
 
 boolean soundLock = false;//this ensures that songs won't be played over and over again in a draw loop. Also dont put songs in the drawloop unless you want crazy feedback.
 boolean GOsoundLock = false;//this is the game over version
@@ -67,8 +70,8 @@ void setup() {
   gameOverSound = new SoundFile(this, "mainTrack.mp3"); */
   //intro.play();
   //intro.loop();
-  //saveProgress(level);
-  //retrieveProgress(); uncomment for crashes lol
+  
+  
 }
 
 public void settings() {
@@ -144,6 +147,7 @@ void drawSelectScreen() {
   text("Level Five", width/1.75, height/1.14);
   if(mousePressed && mouseX > width/8 && mouseX < (width/8) + 125 && mouseY > (height * 2)/8 && mouseY < (height * 2)/8 + 125) {
     level = 1;
+    levelOneSetup = true;
   } else if(mousePressed && mouseX > (width * 3.25)/8 && mouseX < ((width*3.25)/8) + 125 && mouseY > (height * 2)/8 && mouseY < (height * 2)/8 + 125) {
     level = 2;
   } else if(mousePressed && mouseX > (width * 5.5)/8 && mouseX < ((width * 5.5)/8) + 125 && mouseY > (height * 2)/8 && mouseY < (height * 2)/8 + 125) {
@@ -159,11 +163,10 @@ void drawSelectScreen() {
 }
 
 void drawLoadGame() {
-  
+ // level = retrieveProgress();//needs to uncomment the rest of the save functionality
 }
 
 void drawMenuScreen() {
-  println(backClick);
  
   PImage img = loadImage("mainScreenPlat.png");
   PImage img2 = loadImage("IndianaJones.png");
@@ -191,9 +194,11 @@ void drawMenuScreen() {
   fill(#3a3b69);
   rect(width/4.5, height/1.75, 200, 100);
   rect(width/1.35, height/1.75, 200, 100);
+  rect(width/2, height/1.15, 200, 100);
   fill(155);
   text("Press 'S'\n to select a level!", width/4.5, height/1.75);
   text("Press 'L'\n to load a save!", width/1.35, height/1.75);
+  text("Press 'T'\n to play\n the tutorial!", width/2, height/1.15);
   rectMode(CORNER);//resets the modes in order to save the scaling for level one
   imageMode(CORNER);
   textAlign(CORNER, CORNER);
@@ -207,6 +212,8 @@ void drawMenuScreen() {
     level = 8;
   } else if(keyPressed && (key == 'l' || key == 'L')) {//refers to loading a save
     level = 9;
+  } else if(keyPressed && (key == 't' || key == 'T')) {
+    level = 7;//takes to tutorial
   }
 }
 
@@ -215,28 +222,19 @@ void playLogic() {//only draws the last move, not all moves in succession
 if(mouseX >= 0 && mouseX <= (width/3) + (width/15) && mouseY >= 13.5 * (height/15) && mouseY <= height && mousePressed) {
     //the above conditional checks 
     levelOneSetup = false;
-    } if (levelOneSetup == false && level == 1) {
+    } if (levelOneSetup == false && level == 1) {//this is the reason nothing happens on the second level
       blockOne.runLine(blockOne.blockText); 
-    //Dont uncomment this until all of the classes have been initialized
-      //wait(90);//should be 1.5 seconds this dont work
       blockTwo.runLine(blockTwo.blockText); 
-     // wait(90);
       blockThree.runLine(blockThree.blockText); 
-      //wait(90);
       blockFour.runLine(blockFour.blockText); 
-      //wait(90);
       blockFive.runLine(blockFive.blockText); 
-      //wait(90);
       blockSix.runLine(blockSix.blockText);
-      //wait(90);
       blockSeven.runLine(blockSeven.blockText); 
-      //wait(90);
       blockEight.runLine(blockEight.blockText); 
-     // wait(90);
       blockNine.runLine(blockNine.blockText); 
-      //wait(90);
       blockTen.runLine(blockTen.blockText);
-   // action.detectWin();//this might be messed up, remove this if error occurs. 
+      wait(90);
+      //detectWin();//this might be messed up, remove this if error occurs. 
     }
 }
 
@@ -434,10 +432,11 @@ void drawTutorial() {
   pop();
  }
  
-/* void wait(int timeToWait) {//is used to delay the program, mainly for animations
+void wait(int timeToWait) {//is used to delay the program, mainly for animations
    int currentTime = millis();
    int updateTime = 0;
      while(currentTime + timeToWait > updateTime) {
        updateTime = millis();
      }
- }*///the wait function is waiting until all of the calls before any of the movement happens, this also allows the player to edit the moves mid-run, there is also no restart
+ }
+ //the wait function is waiting until all of the calls before any of the movement happens, this also allows the player to edit the moves mid-run, there is also no restart

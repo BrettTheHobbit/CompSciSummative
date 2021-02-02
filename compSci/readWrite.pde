@@ -15,7 +15,7 @@ void saveProgress(int level) {
   
 
   try {
-    FileWriter fw = new FileWriter("savedLevel.txt");
+    FileWriter fw = new FileWriter("levelSaveFile.txt");
     BufferedWriter bw = new BufferedWriter(fw);
     bw.write(level);
     bw.close();
@@ -24,14 +24,21 @@ void saveProgress(int level) {
   }
 }
 
-void retrieveProgress() {
+int retrieveProgress() {
   
   try {
-    BufferedReader br = new BufferedReader(new FileReader("savedLevel.txt"));
-    savedLevel = Integer.parseInt(br.readLine());
+    BufferedReader br = new BufferedReader(new FileReader("levelSaveFile.txt"));
+    String readLine= br.readLine();
     br.close();
+    if(readLine != null) {
+      return Integer.parseInt(readLine);
+    } else {
+     return  1; 
+    }
   } catch (IOException e) {
   } finally {
   }
+  println("Could not find save file");
+  return 1;//couldn't find save
 }
     
