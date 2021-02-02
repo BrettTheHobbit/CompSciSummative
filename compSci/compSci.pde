@@ -71,6 +71,7 @@ void setup() {
    gameOverSound = new SoundFile(this, "mainTrack.mp3"); */
   //intro.play();
   //intro.loop();
+  //saveProgress(5);
 }
 
 public void settings() {
