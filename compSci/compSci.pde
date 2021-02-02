@@ -1,4 +1,5 @@
 /* ICS4U1 - Brett Hobbs, Shanif Syed, Nehal Pamma, JC Abanto
+
  The idea of this educational game is to teach younger children about logic by gameifying it.
  The game is split up into two different states, the logic and the action. The logic screen is where you can move around "Logic Blocks" which changes what happens on the "Action Screen"
  You can keep moving around "Logic Blocks" until you are satisfied with the outcome and you think you can reach the end, then you press the start button and your logic affects what happens to the action screen.
@@ -14,6 +15,7 @@
  collisions (borders and win con)
  */
 
+
 import processing.sound.*;
 
 SoundFile intro;
@@ -22,7 +24,7 @@ SoundFile gameOverSound;
 
 int level = 0;
 int xPos, yPos = 10;
-//int savedLevel = 1;//starter is on one but will autosave after every level completetion
+int savedLevel = 1;//starter is on one but will autosave after every level completetion
 
 boolean soundLock = false;//this ensures that songs won't be played over and over again in a draw loop. Also dont put songs in the drawloop unless you want crazy feedback.
 boolean GOsoundLock = false;//this is the game over version

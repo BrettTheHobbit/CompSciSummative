@@ -15,6 +15,9 @@ class Block { //The block class is used to instantiate 10 blocks that when click
     
     switch(textBlock) {
       case "________":
+        if (blockOne.blockText.equals("________")) {
+          levelOneSetup = true;
+        }
         break;//this case is used as a reset from the other ones.
       case "Left":
         //this is where the action class actually moves the physical player
