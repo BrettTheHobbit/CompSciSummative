@@ -1,18 +1,20 @@
 /* ICS4U1 - Brett Hobbs, Shanif Syed, Nehal Pamma, JC Abanto
-The idea of this educational game is to teach younger children about logic by gameifying it.
-The game is split up into two different states, the logic and the action. The logic screen is where you can move around "Logic Blocks" which changes what happens on the "Action Screen"
-You can keep moving around "Logic Blocks" until you are satisfied with the outcome and you think you can reach the end, then you press the start button and your logic affects what happens to the action screen.
 
-TODO LIST:
-The filereader/writer doesnt write to the file in the repository, it either doesn't write or writes to the wrong file and someone has a text file with 69 in it
-in the move backwards method, why are only the first two blocks drawn? are they all supposed to be drawn?
-I also left the program going for 10 mins-ish and a stackoverflow happened
-If i input nothing, then the image disappears
-After playing the first level, the actions that you input dont work
-Wait time between movement (the character just appears at the end)
-save/load functionality
-collisions (borders and win con)
-*/
+ The idea of this educational game is to teach younger children about logic by gameifying it.
+ The game is split up into two different states, the logic and the action. The logic screen is where you can move around "Logic Blocks" which changes what happens on the "Action Screen"
+ You can keep moving around "Logic Blocks" until you are satisfied with the outcome and you think you can reach the end, then you press the start button and your logic affects what happens to the action screen.
+ 
+ TODO LIST:
+ The filereader/writer doesnt write to the file in the repository, it either doesn't write or writes to the wrong file and someone has a text file with 69 in it
+ in the move backwards method, why are only the first two blocks drawn? are they all supposed to be drawn?
+ I also left the program going for 10 mins-ish and a stackoverflow happened
+ If i input nothing, then the image disappears
+ After playing the first level, the actions that you input dont work
+ Wait time between movement (the character just appears at the end)
+ save/load functionality
+ collisions (borders and win con)
+ */
+
 
 import processing.sound.*;
 
@@ -22,7 +24,7 @@ SoundFile gameOverSound;
 
 int level = 0;
 int xPos, yPos = 10;
-//int savedLevel = 1;//starter is on one but will autosave after every level completetion
+int savedLevel = 1;//starter is on one but will autosave after every level completetion
 
 boolean soundLock = false;//this ensures that songs won't be played over and over again in a draw loop. Also dont put songs in the drawloop unless you want crazy feedback.
 boolean GOsoundLock = false;//this is the game over version
@@ -53,10 +55,9 @@ Block blockTen = new Block(xPos, yPos + (63 * height/15));
 static class compSciMain {
   static int jonesX, jonesY;
 }
-  
+
 
 void setup() {
-    
   IndianaJones = loadImage("IndianaJones.png");
   IndianaJonesLeft = loadImage("IndianaJonesLeft.png");
   IndianaJonesRight = loadImage("IndianaJonesRight.png");
@@ -66,12 +67,11 @@ void setup() {
   LevelFive = loadImage("level5.png");
   GameOver = loadImage("GameOver.png");
   /* intro = new SoundFile(this, "introSong.mp3");
-  mainSound = new SoundFile(this, "mainTrack.mp3");//cannot be decoded? for now will be replaced with workable sound
-  gameOverSound = new SoundFile(this, "mainTrack.mp3"); */
+   mainSound = new SoundFile(this, "mainTrack.mp3");//cannot be decoded? for now will be replaced with workable sound
+   gameOverSound = new SoundFile(this, "mainTrack.mp3"); */
   //intro.play();
   //intro.loop();
-  
-  
+  //saveProgress(5);
 }
 
 public void settings() {
@@ -81,48 +81,48 @@ public void settings() {
 void draw() {
   background(#5d5c73); //gives that light purple background
   switch(level) {//swapped out the if statement for simplicity sake
-   case 0:
-     drawMenuScreen();
-     break; //the break prevents overflow from the other cases
-   case 1:
-     /* if(soundLock == false) {
-      intro.stop();//stops the intro music, will now play the main music
-      mainSound.play();
-      mainSound.loop();
-      soundLock = true;//this can never be accessed again 
-    } */
-     drawLevelOne();
-     break;
-   case 2:
-     drawLevelTwo();
-     break;
-   case 3:
-     drawLevelThree();
-     break;
-   case 4:
+  case 0:
+    drawMenuScreen();
+    break; //the break prevents overflow from the other cases
+  case 1:
+    /* if(soundLock == false) {
+     intro.stop();//stops the intro music, will now play the main music
+     mainSound.play();
+     mainSound.loop();
+     soundLock = true;//this can never be accessed again 
+     } */
+    drawLevelOne();
+    break;
+  case 2:
+    drawLevelTwo();
+    break;
+  case 3:
+    drawLevelThree();
+    break;
+  case 4:
     drawLevelFour();
-     break;
-   case 5:
-     drawLevelFive();
-     break;
-   case 6:
-     if(GOsoundLock == false) {
+    break;
+  case 5:
+    drawLevelFive();
+    break;
+  case 6:
+    if (GOsoundLock == false) {
 
       //mainSound.stop();//stops the normal game sound at this point and plays game over sound
       //gameOverSound.play();//there is no stop to this. This tune will continue forever and I dont know where to stop it *BUG WARNING*
       //gameOverSound.loop();
       GOsoundLock = true;
     } 
-     drawGameOver();
-     break;
-   case 7:
-     drawTutorial();
-     break;
-   case 8:
-     drawSelectScreen();//selects which levels to play
-     break;
-   case 9:
-     drawLoadGame();//will load the game from the written file class
+    drawGameOver();
+    break;
+  case 7:
+    drawTutorial();
+    break;
+  case 8:
+    drawSelectScreen();//selects which levels to play
+    break;
+  case 9:
+    drawLoadGame();//will load the game from the written file class
   }
 }
 void drawSelectScreen() {
@@ -131,12 +131,12 @@ void drawSelectScreen() {
   textSize (width/25);
   text("Click the level you want to play!", width/5, height/12);
   push();//scales down all levels
-    scale(0.125);//makes the levels into thumbnail sizes
-    image(LevelOne, width, height*2);
-    image(LevelTwo, width * 3.25, height * 2);//uncomment the third level when added.
-    //image(LevelFour, width * 5.5, height * 2);
-    image(LevelFour, width * 2.125, height * 5);
-    image(LevelFive, width * 4.5, height * 5);
+  scale(0.125);//makes the levels into thumbnail sizes
+  image(LevelOne, width, height*2);
+  image(LevelTwo, width * 3.25, height * 2);//uncomment the third level when added.
+  //image(LevelFour, width * 5.5, height * 2);
+  image(LevelFour, width * 2.125, height * 5);
+  image(LevelFive, width * 4.5, height * 5);
   pop();
   text("<---- Back", 0, height);
   textSize(width/45);
@@ -145,17 +145,17 @@ void drawSelectScreen() {
   text("Level Three", width/1.435, height/2);
   text("Level Four", width/3.5, height/1.14);
   text("Level Five", width/1.75, height/1.14);
-  if(mousePressed && mouseX > width/8 && mouseX < (width/8) + 125 && mouseY > (height * 2)/8 && mouseY < (height * 2)/8 + 125) {
+  if (mousePressed && mouseX > width/8 && mouseX < (width/8) + 125 && mouseY > (height * 2)/8 && mouseY < (height * 2)/8 + 125) {
     level = 1;
     levelOneSetup = true;
-  } else if(mousePressed && mouseX > (width * 3.25)/8 && mouseX < ((width*3.25)/8) + 125 && mouseY > (height * 2)/8 && mouseY < (height * 2)/8 + 125) {
+  } else if (mousePressed && mouseX > (width * 3.25)/8 && mouseX < ((width*3.25)/8) + 125 && mouseY > (height * 2)/8 && mouseY < (height * 2)/8 + 125) {
     level = 2;
-  } else if(mousePressed && mouseX > (width * 5.5)/8 && mouseX < ((width * 5.5)/8) + 125 && mouseY > (height * 2)/8 && mouseY < (height * 2)/8 + 125) {
+  } else if (mousePressed && mouseX > (width * 5.5)/8 && mouseX < ((width * 5.5)/8) + 125 && mouseY > (height * 2)/8 && mouseY < (height * 2)/8 + 125) {
     level = 3;//this takes you to the same level as two
-  } else if(mousePressed && mouseX > (width * 2.125)/8 && mouseX < ((width * 2.125)/8) + 125 && mouseY > (height * 5)/8 && mouseY < (height * 5)/8 + 125) {
+  } else if (mousePressed && mouseX > (width * 2.125)/8 && mouseX < ((width * 2.125)/8) + 125 && mouseY > (height * 5)/8 && mouseY < (height * 5)/8 + 125) {
     level = 4;
-  } else if(mousePressed && mouseX > (width * 4.5)/8 && mouseX < ((width * 4.5)/8) + 125 && mouseY > (height * 5)/8 && mouseY < (height * 5)/8 + 125) {
-    level = 5; 
+  } else if (mousePressed && mouseX > (width * 4.5)/8 && mouseX < ((width * 4.5)/8) + 125 && mouseY > (height * 5)/8 && mouseY < (height * 5)/8 + 125) {
+    level = 5;
   } else if (mousePressed && mouseX > 0 && mouseX < width/4.5 && mouseY < height && mouseY > height/1.05) {
     level = 0;//takes you back to main menu
     backClick = true;//saves the player from going striaght to the level
@@ -163,33 +163,33 @@ void drawSelectScreen() {
 }
 
 void drawLoadGame() {
- // level = retrieveProgress();//needs to uncomment the rest of the save functionality
+  //level = retrieveProgress();//needs to uncomment the rest of the save functionality
 }
 
 void drawMenuScreen() {
- 
+
   PImage img = loadImage("mainScreenPlat.png");
   PImage img2 = loadImage("IndianaJones.png");
   PImage img3 = loadImage("cave-background.png");
-  
+
   rectMode(CENTER);
   fill(#000000);
-  rect(width/2 , height/2 , width/1/125 ,height/1.2);
-  fill(255,255,255);
+  rect(width/2, height/2, width/1/125, height/1.2);
+  fill(255, 255, 255);
   imageMode(CENTER);
   image(img3, width/2, height/2, width/1.125, height/1.2);
-  
+
   createFont("Imprint MT Shadow", 32);
   textAlign(CENTER, CENTER);
   textSize(width/20);
   fill(155);
-  text("Logic Quest", width/2,150);
+  text("Logic Quest", width/2, 150);
   textSize(width/50);
-  text("Click Anywhere to continue", width/2, height/2.4);
-  
+  text("Press 'P' to play!", width/2, height/2.4);
+
   image(img, width/2, height/1.34);
   image(img2, width/2, height/1.67);
-  
+
   textSize(width/35);
   fill(#3a3b69);
   rect(width/4.5, height/1.75, 200, 100);
@@ -202,52 +202,66 @@ void drawMenuScreen() {
   rectMode(CORNER);//resets the modes in order to save the scaling for level one
   imageMode(CORNER);
   textAlign(CORNER, CORNER);
-  if(mouseButton == 0) {//this is when the mouse is released
+  if (mouseButton == 0) {//this is when the mouse is released
     backClick = false;
   }
-  if (mousePressed && backClick == false) {
+  if (keyPressed && (key == 'p' || key == 'P')) {
     level = 1;
     levelOneSetup = true;
-  } else if(keyPressed && (key == 's' || key == 'S')) {//refers to the select screen
+  } else if (keyPressed && (key == 's' || key == 'S')) {//refers to the select screen
     level = 8;
-  } else if(keyPressed && (key == 'l' || key == 'L')) {//refers to loading a save
+  } else if (keyPressed && (key == 'l' || key == 'L')) {//refers to loading a save
     level = 9;
-  } else if(keyPressed && (key == 't' || key == 'T')) {
+  } else if (keyPressed && (key == 't' || key == 'T')) {
     level = 7;//takes to tutorial
   }
 }
 
 //put the play logic method in the main class, i didnt do it cuz i didnt want to override anyone elses work in github
 void playLogic() {//only draws the last move, not all moves in succession
+<<<<<<< HEAD
 if(mouseX >= 0 && mouseX <= (width/3) + (width/15) && mouseY >= 10.5 * (height/15) && mouseY <= height && mousePressed) {
+=======
+  if (mouseX >= 0 && mouseX <= (width/3) + (width/15) && mouseY >= 13.5 * (height/15) && mouseY <= height && mousePressed) {
+>>>>>>> 7295ef103d2807257eaf2327ba5eca12b7754ff1
     //the above conditional checks 
     levelOneSetup = false;
-    } if (levelOneSetup == false && level == 1) {//this is the reason nothing happens on the second level
-      blockOne.runLine(blockOne.blockText); 
-      blockTwo.runLine(blockTwo.blockText); 
-      blockThree.runLine(blockThree.blockText); 
-      blockFour.runLine(blockFour.blockText); 
-      blockFive.runLine(blockFive.blockText); 
-      blockSix.runLine(blockSix.blockText);
-      blockSeven.runLine(blockSeven.blockText); 
-      blockEight.runLine(blockEight.blockText); 
-      blockNine.runLine(blockNine.blockText); 
-      blockTen.runLine(blockTen.blockText);
-      wait(90);
-      //detectWin();//this might be messed up, remove this if error occurs. 
-    }
+  } 
+  if (levelOneSetup == false && level == 1) {//this is the reason nothing happens on the second level
+    blockOne.runLine(blockOne.blockText);
+    delay(1000);
+    blockTwo.runLine(blockTwo.blockText);
+    delay(1000);
+    blockThree.runLine(blockThree.blockText);
+    wait(1500);
+    blockFour.runLine(blockFour.blockText); 
+    wait(1500);
+    blockFive.runLine(blockFive.blockText); 
+    wait(1500);
+    blockSix.runLine(blockSix.blockText);
+    wait(1500);
+    blockSeven.runLine(blockSeven.blockText);
+    wait(1500);
+    blockEight.runLine(blockEight.blockText); 
+    wait(1500);
+    blockNine.runLine(blockNine.blockText);
+    wait(1500);
+    blockTen.runLine(blockTen.blockText);
+    //detectWin();//this might be messed up, remove this if error occurs.
+  }
 }
 
 void drawLevelOne() {
+  resetBlocks();
   compSciMain.jonesX = 990;
   compSciMain.jonesY = 870;
   if (levelOneSetup) {
-  rectMode(CORNER);
-  push();
-  scale(.5);//this is how to properly scale all the imagery (just this line).
-  image(LevelOne, 4 *(width/5), height/5.5);
-  image(IndianaJones, compSciMain.jonesX, compSciMain.jonesY);
-  pop();
+    rectMode(CORNER);
+    push();
+    scale(.5);//this is how to properly scale all the imagery (just this line).
+    image(LevelOne, 4 *(width/5), height/5.5);
+    image(IndianaJones, compSciMain.jonesX, compSciMain.jonesY);
+    pop();
   }
   fill(#7b9095);
   rect(0, 0, width/3, height); 
@@ -268,6 +282,7 @@ void drawLevelOne() {
 }
 
 void drawLevelTwo() {
+  resetBlocks();
   compSciMain.jonesX = 820;
   compSciMain.jonesY = 840;
   push();
@@ -292,6 +307,7 @@ void drawLevelTwo() {
 }
 
 void drawLevelThree() {
+  resetBlocks();
   compSciMain.jonesX = 820;
   compSciMain.jonesY = 840;
   push();
@@ -318,6 +334,7 @@ void drawLevelThree() {
 }
 
 void drawLevelFour() {
+  resetBlocks();
   compSciMain.jonesX = 1500;
   compSciMain.jonesY = 860;
   push();
@@ -344,7 +361,8 @@ void drawLevelFour() {
 }
 
 void drawLevelFive() {
- compSciMain.jonesX = 800;
+  resetBlocks();
+  compSciMain.jonesX = 800;
   compSciMain.jonesY = 620;
   push();
   scale(.5);//this is how to properly scale all the imagery (just this line).
@@ -370,13 +388,13 @@ void drawLevelFive() {
 }
 
 void drawGameOver() {
-  
+
   GameOver.resize(width, height);
   image(GameOver, 0, 0);
-  
-   if (mousePressed && mouseX > (width/4)+25 && mouseX < 3*(width/4)-45 && mouseY > 3*(height/5)+90 && mouseY < 4*(height/5)+75) {
-     level = 0;
-   }
+
+  if (mousePressed && mouseX > (width/4)+25 && mouseX < 3*(width/4)-45 && mouseY > 3*(height/5)+90 && mouseY < 4*(height/5)+75) {
+    level = 0;
+  }
 }
 
 void mouseClicked() {
@@ -412,9 +430,9 @@ void drawTutorial() {
   textSize(15);
   text("  Click the dotted lines to change the direction to where you want to go in \norder from your first move to its last. When you're ready to run it, click play.\n                            Practice moving around the empty space.", 320*width/900, height/6);
 }
-  
-  //this is the universal logic background.
- void drawBackground() {//all of this just draws the UI on the left side of the screen
+
+//this is the universal logic background.
+void drawBackground() {//all of this just draws the UI on the left side of the screen
   push();
   scale(.75);
   ellipseMode(CENTER);//personal preference, if you want to change it you can later   
@@ -430,13 +448,24 @@ void drawTutorial() {
   triangle((width/3.15) - 20, 17.4 * height/15, (width/3.15) - 20, 18.2 * height/15, (width/3.15) + 80, 17.8 * height/15);
   noStroke();//play triangle
   pop();
- }
- 
+}
+
+void resetBlocks() {//should allow the text to be reset when changing between stages
+  blockOne.blockText = "________";
+  blockTwo.blockText = "________";
+  blockThree.blockText = "________";
+  blockFour.blockText = "________";
+  blockFive.blockText = "________";
+  blockSix.blockText = "________";
+  blockSeven.blockText = "________";
+  blockEight.blockText = "________";
+  blockNine.blockText = "________";
+  blockTen.blockText = "________";
+}
+
 void wait(int timeToWait) {//is used to delay the program, mainly for animations
-   int currentTime = millis();
-   int updateTime = 0;
-     while(currentTime + timeToWait > updateTime) {
-       updateTime = millis();
-     }
- }
- //the wait function is waiting until all of the calls before any of the movement happens, this also allows the player to edit the moves mid-run, there is also no restart
+  int currentTime = millis();
+  while (millis() - currentTime < timeToWait) {
+  }
+}
+//the wait function is waiting until all of the calls before any of the movement happens, this also allows the player to edit the moves mid-run, there is also no restart

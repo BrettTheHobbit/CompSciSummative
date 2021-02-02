@@ -9,12 +9,16 @@ class Block { //The block class is used to instantiate 10 blocks that when click
    String blockText = "________";//what will be written upon the screen
    Block(int bX, int bY) {//constructor
     this.blockX = bX;
-    this.blockY = bY;
+    this.blockY = bY; 
+   this.blockText = "________";
   }
   void runLine(String textBlock) {
     
     switch(textBlock) {
       case "________":
+        if (blockOne.blockText.equals("________")) {
+          levelOneSetup = true;
+        }
         break;//this case is used as a reset from the other ones.
       case "Left":
         //this is where the action class actually moves the physical player
