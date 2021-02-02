@@ -266,6 +266,7 @@ void drawLevelOne() {
   drawBackground();//draws the green button etc.
   playLogic();//runs the actual button logic when the grren button is pressed
   level1Hit();
+  detectWin();
 }
 
 void drawLevelTwo() {
@@ -314,6 +315,8 @@ void drawLevelThree() {
   blockTen.drawBlock();
   drawBackground();//draws the green button etc.
   playLogic();//runs the actual button logic when the grren button is pressed
+  levelThreeHit();
+  detectWin();
 }
 
 void drawLevelFour() {
@@ -338,6 +341,8 @@ void drawLevelFour() {
   blockTen.drawBlock();
   drawBackground();//draws the green button etc.
   playLogic();//runs the actual button logic when the grren button is pressed
+  levelFourHit();
+  detectWin();
 }
 
 void drawLevelFive() {
@@ -362,6 +367,8 @@ void drawLevelFive() {
   blockTen.drawBlock();
   drawBackground();//draws the green button etc.
   playLogic();//runs the actual button logic when the grren button is pressed
+  levelFiveHit();
+  detectWin();
 }
 
 void drawGameOver() {
