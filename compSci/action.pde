@@ -25,6 +25,21 @@ void level1Hit(){//all of these just put him back at the start
   }
 }
 
+void levelTwoHit(){
+   if(compSciMain.jonesX <= 400 * 1.8 || compSciMain.jonesX >= 780 * 1.8 || compSciMain.jonesY >= 510 * 1.8 || compSciMain.jonesY <= 175 * 1.9){ // border
+     displayWarning();
+  }
+   if(compSciMain.jonesX >= 660 * 1.8 && compSciMain.jonesX <= 795 * 1.8 && compSciMain.jonesY >= 255 * 1.8 && compSciMain.jonesY <= 440 * 1.8){ // right red area
+    displayWarning();
+  }
+   if(compSciMain.jonesX >= 390 * 1.8 && compSciMain.jonesX <= 585 * 1.8 && compSciMain.jonesY >= 275 * 1.8 && compSciMain.jonesY <= 435 * 1.8){ // area above start
+    displayWarning();
+  }
+    if(compSciMain.jonesX >= 720 * 1.8 && compSciMain.jonesX <= 835 * 1.8 && compSciMain.jonesY >= 440 * 1.8 && compSciMain.jonesY <= 505 * 1.8){ // area to right of start
+    displayWarning();
+  }
+}
+
 void levelThreeHit(){
   if(compSciMain.jonesX <= 370 * 1.8 || compSciMain.jonesX >= 800 * 1.8 || compSciMain.jonesY >= 480 * 1.2 || compSciMain.jonesY <= 85 * 1.2){ // border
    displayWarning();
@@ -211,6 +226,10 @@ void displayWarning() {
   if(level == 1){
   compSciMain.jonesX = 990;
   compSciMain.jonesY = 870;
+ }
+  if(level == 2){
+  compSciMain.jonesX = 820;
+  compSciMain.jonesY = 840;
  }
  if(level == 3){
   compSciMain.jonesX = 810;
