@@ -252,7 +252,6 @@ if(mouseX >= 0 && mouseX <= (width/3) + (width/15) && mouseY >= 10.5 * (height/1
 }
 
 void drawLevelOne() {
-  resetBlocks();
   compSciMain.jonesX = 990;
   compSciMain.jonesY = 870;
   if (levelOneSetup) {
@@ -282,7 +281,6 @@ void drawLevelOne() {
 }
 
 void drawLevelTwo() {
-  resetBlocks();
   compSciMain.jonesX = 820;
   compSciMain.jonesY = 840;
   push();
@@ -307,7 +305,6 @@ void drawLevelTwo() {
 }
 
 void drawLevelThree() {
-  resetBlocks();
   compSciMain.jonesX = 820;
   compSciMain.jonesY = 840;
   push();
@@ -334,7 +331,6 @@ void drawLevelThree() {
 }
 
 void drawLevelFour() {
-  resetBlocks();
   compSciMain.jonesX = 1500;
   compSciMain.jonesY = 860;
   push();
@@ -361,7 +357,6 @@ void drawLevelFour() {
 }
 
 void drawLevelFive() {
-  resetBlocks();
   compSciMain.jonesX = 800;
   compSciMain.jonesY = 620;
   push();
@@ -398,16 +393,19 @@ void drawGameOver() {
 }
 
 void mouseClicked() {
-  blockOne.updateText();
-  blockTwo.updateText();
-  blockThree.updateText();
-  blockFour.updateText();
-  blockFive.updateText();
-  blockSix.updateText();
-  blockSeven.updateText();
-  blockEight.updateText();
-  blockNine.updateText();
-  blockTen.updateText();
+    blockOne.updateText();
+    blockTwo.updateText();
+    blockThree.updateText();
+    blockFour.updateText();
+    blockFive.updateText();
+    blockSix.updateText();
+    blockSeven.updateText();
+    blockEight.updateText();
+    blockNine.updateText();
+    blockTen.updateText();
+    if (level == 0) {
+     resetBlocks(); 
+    }
 }
 
 void drawTutorial() {
@@ -452,15 +450,25 @@ void drawBackground() {//all of this just draws the UI on the left side of the s
 
 void resetBlocks() {//should allow the text to be reset when changing between stages
   blockOne.blockText = "________";
+  blockOne.indexBlock = 0;
   blockTwo.blockText = "________";
+  blockTwo.indexBlock = 0;
   blockThree.blockText = "________";
+  blockThree.indexBlock = 0;
   blockFour.blockText = "________";
+  blockFour.indexBlock = 0;
   blockFive.blockText = "________";
-  blockSix.blockText = "________";
+  blockFive.indexBlock = 0;
+  blockSix.blockText = "________";  
+  blockSix.indexBlock = 0;
   blockSeven.blockText = "________";
+  blockSeven.indexBlock = 0;
   blockEight.blockText = "________";
+  blockEight.indexBlock = 0;
   blockNine.blockText = "________";
+  blockNine.indexBlock = 0;
   blockTen.blockText = "________";
+  blockTen.indexBlock = 0;
 }
 
 void wait(int timeToWait) {//is used to delay the program, mainly for animations
