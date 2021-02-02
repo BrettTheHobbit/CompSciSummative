@@ -25,6 +25,21 @@ void level1Hit(){//all of these just put him back at the start
   }
 }
 
+void levelTwoHit(){
+   if(compSciMain.jonesX <= 400 * 1.8 || compSciMain.jonesX >= 780 * 1.8 || compSciMain.jonesY >= 510 * 1.8 || compSciMain.jonesY <= 175 * 1.9){ // border
+     displayWarning();
+  }
+   if(compSciMain.jonesX >= 660 * 1.8 && compSciMain.jonesX <= 795 * 1.8 && compSciMain.jonesY >= 255 * 1.8 && compSciMain.jonesY <= 440 * 1.8){ // right red area
+    displayWarning();
+  }
+   if(compSciMain.jonesX >= 390 * 1.8 && compSciMain.jonesX <= 585 * 1.8 && compSciMain.jonesY >= 275 * 1.8 && compSciMain.jonesY <= 435 * 1.8){ // area above start
+    displayWarning();
+  }
+    if(compSciMain.jonesX >= 720 * 1.8 && compSciMain.jonesX <= 835 * 1.8 && compSciMain.jonesY >= 440 * 1.8 && compSciMain.jonesY <= 505 * 1.8){ // area to right of start
+    displayWarning();
+  }
+}
+
 void levelThreeHit(){
   if(compSciMain.jonesX <= 370 * 1.8 || compSciMain.jonesX >= 800 * 1.8 || compSciMain.jonesY >= 480 * 1.2 || compSciMain.jonesY <= 85 * 1.2){ // border
    displayWarning();
@@ -85,6 +100,15 @@ void moveLeft() {
     compSciMain.jonesX = compSciMain.jonesX - 200;
     image(IndianaJonesLeft, compSciMain.jonesX, compSciMain.jonesY);
     pop();
+    
+  } else if (level == 2) {
+    push();
+    scale(.5);
+    image(LevelTwo, 4 *(width/5), height/5.5);
+    compSciMain.jonesX = compSciMain.jonesX - 140;
+    image(IndianaJonesLeft, compSciMain.jonesX, compSciMain.jonesY);
+    pop();  
+  
   } else if (level == 7) {
     fill(#FFFFFF);
     textSize(30);
@@ -102,6 +126,15 @@ void moveRight() {
     image(LevelOne, 4 *(width/5), height/5.5);
     image(IndianaJonesRight, compSciMain.jonesX, compSciMain.jonesY);
     pop();
+    
+  } else if (level == 2) {
+    compSciMain.jonesX = compSciMain.jonesX + 175;
+    push();
+    scale(.5);
+    image(LevelTwo, 4 *(width/5), height/5.5);
+    image(IndianaJonesRight, compSciMain.jonesX, compSciMain.jonesY);
+    pop();
+    
   } else if (level == 7) {
     fill(#FFFFFF);
     textSize(30);
@@ -119,6 +152,15 @@ void moveForwards() {
     compSciMain.jonesY = compSciMain.jonesY - 175;
     image(IndianaJones, compSciMain.jonesX, compSciMain.jonesY);
     pop();
+    
+  } else if (level == 2) {
+    compSciMain.jonesY = compSciMain.jonesY - 240;
+    push();
+    scale(.5);
+    image(LevelTwo, 4 *(width/5), height/5.5);
+    image(IndianaJonesRight, compSciMain.jonesX, compSciMain.jonesY);
+    pop();
+    
   } else if (level == 7) {
     fill(#FFFFFF);
     textSize(30);
@@ -137,6 +179,15 @@ void moveBackwards() {
     image(IndianaJones, compSciMain.jonesX, compSciMain.jonesY);
     pop();
 
+  } else if (level == 2) {
+    push();
+    scale(.5);
+    image(LevelTwo, 4 *(width/5),  height/5.5);
+    compSciMain.jonesY = compSciMain.jonesY + 175;
+    image(IndianaJones, compSciMain.jonesX, compSciMain.jonesY);
+    pop();
+    wait(100);
+  
   } else if (level == 7) {
     fill(#FFFFFF);
     textSize(100);
@@ -176,9 +227,13 @@ void displayWarning() {
   compSciMain.jonesX = 990;
   compSciMain.jonesY = 870;
  }
- if(level == 3){
+  if(level == 2){
   compSciMain.jonesX = 820;
   compSciMain.jonesY = 840;
+ }
+ if(level == 3){
+  compSciMain.jonesX = 810;
+  compSciMain.jonesY = 150;
  }
  if(level == 4){
   compSciMain.jonesX = 1500;
