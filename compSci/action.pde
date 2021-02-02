@@ -85,6 +85,15 @@ void moveLeft() {
     compSciMain.jonesX = compSciMain.jonesX - 200;
     image(IndianaJonesLeft, compSciMain.jonesX, compSciMain.jonesY);
     pop();
+    
+  } else if (level == 2) {
+    push();
+    scale(.5);
+    image(LevelTwo, 4 *(width/5), height/5.5);
+    compSciMain.jonesX = compSciMain.jonesX - 140;
+    image(IndianaJonesLeft, compSciMain.jonesX, compSciMain.jonesY);
+    pop();  
+  
   } else if (level == 7) {
     fill(#FFFFFF);
     textSize(30);
@@ -102,6 +111,15 @@ void moveRight() {
     image(LevelOne, 4 *(width/5), height/5.5);
     image(IndianaJonesRight, compSciMain.jonesX, compSciMain.jonesY);
     pop();
+    
+  } else if (level == 2) {
+    compSciMain.jonesX = compSciMain.jonesX + 175;
+    push();
+    scale(.5);
+    image(LevelTwo, 4 *(width/5), height/5.5);
+    image(IndianaJonesRight, compSciMain.jonesX, compSciMain.jonesY);
+    pop();
+    
   } else if (level == 7) {
     fill(#FFFFFF);
     textSize(30);
@@ -119,6 +137,15 @@ void moveForwards() {
     compSciMain.jonesY = compSciMain.jonesY - 175;
     image(IndianaJones, compSciMain.jonesX, compSciMain.jonesY);
     pop();
+    
+  } else if (level == 2) {
+    compSciMain.jonesY = compSciMain.jonesY - 240;
+    push();
+    scale(.5);
+    image(LevelTwo, 4 *(width/5), height/5.5);
+    image(IndianaJonesRight, compSciMain.jonesX, compSciMain.jonesY);
+    pop();
+    
   } else if (level == 7) {
     fill(#FFFFFF);
     textSize(30);
@@ -137,6 +164,15 @@ void moveBackwards() {
     image(IndianaJones, compSciMain.jonesX, compSciMain.jonesY);
     pop();
 
+  } else if (level == 2) {
+    push();
+    scale(.5);
+    image(LevelTwo, 4 *(width/5),  height/5.5);
+    compSciMain.jonesY = compSciMain.jonesY + 175;
+    image(IndianaJones, compSciMain.jonesX, compSciMain.jonesY);
+    pop();
+    wait(100);
+  
   } else if (level == 7) {
     fill(#FFFFFF);
     textSize(100);
