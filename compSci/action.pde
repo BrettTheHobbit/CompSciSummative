@@ -28,6 +28,21 @@ void level1Hit(){
   }
 }
 
+void levelThreeHit(){
+  if(compSciMain.jonesX <= 370 * 1.8 || compSciMain.jonesX >= 800 * 1.8 || compSciMain.jonesY >= 480 * 1.2 || compSciMain.jonesY <= 85 * 1.2){ // border
+   // start at begining
+  }
+   if(compSciMain.jonesX >= 385 * 1.8 && compSciMain.jonesX <= 705 * 1.8 && compSciMain.jonesY >= 175 * 1.2 && compSciMain.jonesY <= 260 * 1.2){ // area under character
+  // start at begining
+   }
+  if(compSciMain.jonesX >= 655 * 1.8 && compSciMain.jonesX <= 800 * 1.8 && compSciMain.jonesY >= 350 * 1.2 && compSciMain.jonesY <= 480 * 1.2){ // area right of gold
+  // start at begining
+   }
+  if(compSciMain.jonesX >= 490 * 1.8 && compSciMain.jonesX <= 555 * 1.8 && compSciMain.jonesY >= 350 * 1.2 && compSciMain.jonesY <= 370 * 1.2){ // small area near gold
+  // start at begining
+   }
+}
+
 void levelFourHit(){
     if(compSciMain.jonesX <= 360 * 1.9 || compSciMain.jonesX >= 860 * 1.9 || compSciMain.jonesY >= 540 * 1.9 || compSciMain.jonesY <= 80 * 1.9){ // border
    // start at begining
@@ -150,13 +165,16 @@ void moveBackwards() {
 }
 
 void detectWin() {
-  if(level == 1 && compSciMain.jonesX >= 655 * 1.9 && compSciMain.jonesX <= 800 * 1.9 && compSciMain.jonesY >= 80 * 1.9 && compSciMain.jonesY <= 160 * 1.9){ // bottom right blue area (near key)
+  if(level == 1 && compSciMain.jonesX >= 655 * 1.9 && compSciMain.jonesX <= 800 * 1.9 && compSciMain.jonesY >= 80 * 1.9 && compSciMain.jonesY <= 160 * 1.9){ // level 1 finish
   level++;
  }
-  if(level == 4 && compSciMain.jonesX >= 385 * 1.9 && compSciMain.jonesX <= 500 * 1.9 && compSciMain.jonesY >= 110 * 1.9 && compSciMain.jonesY <= 215 * 1.9){ // bottom right blue area (near key)
+  if(level == 3 && compSciMain.jonesX >= 556 * 1.9 && compSciMain.jonesX <= 655 * 1.9 && compSciMain.jonesY >= 355 * 1.2 && compSciMain.jonesY <= 480 * 1.2){ // level 3 finish
   level++;
  }
-  if(level == 5 && compSciMain.jonesX >= 705 * 1.8 && compSciMain.jonesX <= 770 * 1.8 && compSciMain.jonesY >= 390 * 1.8 && compSciMain.jonesY <= 460 * 1.8){ // bottom right blue area (near key)
+  if(level == 4 && compSciMain.jonesX >= 385 * 1.9 && compSciMain.jonesX <= 500 * 1.9 && compSciMain.jonesY >= 110 * 1.9 && compSciMain.jonesY <= 215 * 1.9){ // level 4 finish
+  level++;
+ }
+  if(level == 5 && compSciMain.jonesX >= 705 * 1.8 && compSciMain.jonesX <= 770 * 1.8 && compSciMain.jonesY >= 390 * 1.8 && compSciMain.jonesY <= 460 * 1.8){ // level 5 finish
   level++;
  }
 }
