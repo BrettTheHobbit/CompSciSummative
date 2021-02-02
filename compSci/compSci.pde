@@ -34,6 +34,7 @@ boolean levelTwoSetup = false;
 
 PImage LevelOne;
 PImage LevelTwo;
+PImage LevelThree;
 PImage LevelFour;
 PImage LevelFive;
 PImage IndianaJones;
@@ -63,6 +64,7 @@ void setup() {
   IndianaJonesRight = loadImage("IndianaJonesRight.png");
   LevelOne = loadImage("Level1.png");
   LevelTwo = loadImage("pixil-frame-0.png");
+  LevelThree = loadImage("level3.png");
   LevelFour = loadImage("Level4.png");
   LevelFive = loadImage("level5.png");
   GameOver = loadImage("GameOver.png");
@@ -298,14 +300,16 @@ void drawLevelTwo() {
   blockTen.drawBlock();
   drawBackground();//draws the green button etc.
   playLogic();//runs the actual button logic when the grren button is pressed
+  levelTwoHit();
+  detectWin();
 }
 
 void drawLevelThree() {
-  compSciMain.jonesX = 820;
-  compSciMain.jonesY = 840;
+  compSciMain.jonesX = 810;
+  compSciMain.jonesY = 150;
   push();
   scale(.5);//this is how to properly scale all the imagery (just this line).
-  image(LevelTwo, 4 *(width/5), height/7.5);
+  image(LevelThree, 4 *(width/5), height/7.5);
   image(IndianaJones, compSciMain.jonesX, compSciMain.jonesY);
   pop();
   fill(#7b9095);
