@@ -115,7 +115,6 @@ void moveLeft() {
     image(IndianaJonesLeft, compSciMain.jonesX, compSciMain.jonesY);
     pop();
   } else if (level == 7) {
-    background(33);
     fill(#FFFFFF);
     textSize(30);
     text("  Click the dotted lines to change the direction to where you want to go in \norder from your first move to its last. When you're ready to run it, click play.\n                            Practice moving around the empty space.", width/3+90, height/6);
@@ -133,12 +132,7 @@ void moveRight() {
     image(LevelOne, 4 *(width/5), height/5.5);
     image(IndianaJonesRight, compSciMain.jonesX, compSciMain.jonesY);
     pop();
-    blockOne.drawBlock();
-    blockTwo.drawBlock();
   } else if (level == 7) {
-    background(33);
-    blockOne.drawBlock();
-    blockTwo.drawBlock();
     fill(#FFFFFF);
     textSize(30);
     text("  Click the dotted lines to change the direction to where you want to go in \norder from your first move to its last. When you're ready to run it, click play.\n                            Practice moving around the empty space.", width/3+90, height/6);
@@ -156,12 +150,7 @@ void moveForwards() {
     compSciMain.jonesY = compSciMain.jonesY - 175;
     image(IndianaJones, compSciMain.jonesX, compSciMain.jonesY);
     pop();
-    blockOne.drawBlock();
-    blockTwo.drawBlock();
   } else if (level == 7) {
-    background(33);
-    blockOne.drawBlock();
-    blockTwo.drawBlock();
     fill(#FFFFFF);
     textSize(30);
     text("  Click the dotted lines to change the direction to where you want to go in \norder from your first move to its last. When you're ready to run it, click play.\n                            Practice moving around the empty space.", width/3+90, height/6);
@@ -179,13 +168,8 @@ void moveBackwards() {
     compSciMain.jonesY = compSciMain.jonesY + 175;
     image(IndianaJones, compSciMain.jonesX, compSciMain.jonesY);
     pop();
-    blockOne.drawBlock();
-    blockTwo.drawBlock();
     wait(100);
   } else if (level == 7) {
-    background(33);
-    blockOne.drawBlock();
-    blockTwo.drawBlock();
     fill(#FFFFFF);
     textSize(100);
     text("  Click the dotted lines to change the direction to where you want to go in \norder from your first move to its last. When you're ready to run it, click play.\n                            Practice moving around the empty space.", width/3+90, height/6);
