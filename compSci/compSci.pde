@@ -224,7 +224,11 @@ void drawMenuScreen() {
 
 //put the play logic method in the main class, i didnt do it cuz i didnt want to override anyone elses work in github
 void playLogic() {//only draws the last move, not all moves in succession
+<<<<<<< HEAD
+if(mouseX >= 0 && mouseX <= (width/3) + (width/15) && mouseY >= 10.5 * (height/15) && mouseY <= height && mousePressed) {
+=======
   if (mouseX >= 0 && mouseX <= (width/3) + (width/15) && mouseY >= 13.5 * (height/15) && mouseY <= height && mousePressed) {
+>>>>>>> 7295ef103d2807257eaf2327ba5eca12b7754ff1
     //the above conditional checks 
     levelOneSetup = false;
     levelTwoSetup = false;
