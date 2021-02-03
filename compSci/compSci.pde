@@ -22,7 +22,7 @@ SoundFile intro;
 SoundFile mainSound; //game sound one couldnt be decoded
 SoundFile gameOverSound;
 
-int level = 5;
+int level = 0;//this var switches screen states
 int xPos, yPos = 10;//more specifically the x/y pos of the blocks on the side
 int savedLevel = 1;//starter is on one but will autosave after every level completetion
 
@@ -35,7 +35,7 @@ boolean levelFourSetup = false;
 boolean levelFiveSetup = false;
 boolean starterPointBlock = true;
 
-PImage LevelOne;
+PImage LevelOne;//images of the levels and the player
 PImage LevelTwo;
 PImage LevelThree;
 PImage LevelFour;
@@ -45,7 +45,7 @@ PImage IndianaJonesLeft;
 PImage IndianaJonesRight;
 PImage GameOver;
 
-Block blockOne = new Block(xPos, yPos);
+Block blockOne = new Block(xPos, yPos);//defines all of the scratch blocks
 Block blockTwo = new Block(xPos, yPos + (7 * height/15));
 Block blockThree = new Block(xPos, yPos + (14 * height/15));
 Block blockFour = new Block(xPos, yPos + (21 * height/15));
@@ -62,7 +62,7 @@ static class compSciMain {
 
 
 void setup() {
-  IndianaJones = loadImage("IndianaJones.png");
+  IndianaJones = loadImage("IndianaJones.png");//init all images
   IndianaJonesLeft = loadImage("IndianaJonesLeft.png");
   IndianaJonesRight = loadImage("IndianaJonesRight.png");
   LevelOne = loadImage("Level1.png");
@@ -71,11 +71,11 @@ void setup() {
   LevelFour = loadImage("Level4.png");
   LevelFive = loadImage("level5.png");
   GameOver = loadImage("GameOver.png");
-  /* intro = new SoundFile(this, "introSong.mp3");
+   intro = new SoundFile(this, "introSong.mp3");
    mainSound = new SoundFile(this, "mainTrack.mp3");//cannot be decoded? for now will be replaced with workable sound
-   gameOverSound = new SoundFile(this, "mainTrack.mp3"); */
-  //intro.play();
-  //intro.loop();
+   gameOverSound = new SoundFile(this, "mainTrack.mp3"); 
+  intro.play();
+  intro.loop();
   //saveProgress(5);
 }
 
@@ -90,13 +90,13 @@ void draw() {
     drawMenuScreen();
     break; //the break prevents overflow from the other cases
   case 1:
-    /* if(soundLock == false) {
+     if(soundLock == false) {
      intro.stop();//stops the intro music, will now play the main music
      mainSound.play();
      mainSound.loop();
      soundLock = true;//this can never be accessed again 
-     } */
-    drawLevelOne();
+     } 
+    drawLevelOne();//calls a method which draws image + blocks
     break;
   case 2:
     drawLevelTwo();
@@ -113,15 +113,15 @@ void draw() {
   case 6:
     if (GOsoundLock == false) {
 
-      //mainSound.stop();//stops the normal game sound at this point and plays game over sound
-      //gameOverSound.play();//there is no stop to this. This tune will continue forever and I dont know where to stop it *BUG WARNING*
-      //gameOverSound.loop();
+      mainSound.stop();//stops the normal game sound at this point and plays game over sound
+      gameOverSound.play();//there is no stop to this. This tune will continue forever and I dont know where to stop it *BUG WARNING*
+      gameOverSound.loop();
       GOsoundLock = true;
     } 
     drawGameOver();
     break;
   case 7:
-    drawTutorial();
+    drawTutorial();//helps player learn game
     break;
   case 8:
     drawSelectScreen();//selects which levels to play
@@ -130,7 +130,8 @@ void draw() {
     drawLoadGame();//will load the game from the written file class
   }
 }
-void drawSelectScreen() {
+void drawSelectScreen() {//allows you to select level
+//following is aesthetic drawing of select screen
   fill(255);
   textSize (width/25);
   text("Click the level you want to play!", width/5, height/12);
@@ -149,6 +150,7 @@ void drawSelectScreen() {
   text("Level Three", width/1.435, height/2);
   text("Level Four", width/3.5, height/1.14);
   text("Level Five", width/1.75, height/1.14);
+  //click detection
   if (mousePressed && mouseX > width/8 && mouseX < (width/8) + 125 && mouseY > (height * 2)/8 && mouseY < (height * 2)/8 + 125) {
     level = 1;
     levelOneSetup = true;
@@ -170,10 +172,11 @@ void drawSelectScreen() {
 }
 
 void drawLoadGame() {
+  //unfortunatly could not be finished
   //level = retrieveProgress();//needs to uncomment the rest of the save functionality
 }
 
-void drawMenuScreen() {
+void drawMenuScreen() {//draws first screen state
 
   PImage img = loadImage("mainScreenPlat.png");
   PImage img2 = loadImage("IndianaJones.png");
@@ -209,7 +212,7 @@ void drawMenuScreen() {
   rectMode(CORNER);//resets the modes in order to save the scaling for level one
   imageMode(CORNER);
   textAlign(CORNER, CORNER);
-
+//takes to diff screens
   if (keyPressed && (key == 'p' || key == 'P')) {
     level = 1;
     levelOneSetup = true;
@@ -235,9 +238,7 @@ if(mouseX >= 0 && mouseX <= (width/3) + (width/15) && mouseY >= 10.5 * (height/1
     levelFiveSetup = false;
     starterPointBlock = false;
   } 
-  if ((level == 1 && levelOneSetup == false) || (levelTwoSetup == false && level == 2) || (levelThreeSetup == false && level == 3)  || (levelFourSetup == false && level == 4) || (levelFiveSetup == false && level == 5)) {//this is the reason nothing happens on the second level
-  
-    println("god I hate this method" + level + " " + compSciMain.jonesX + " " + compSciMain.jonesY );
+  if ((level == 1 && levelOneSetup == false) || (levelTwoSetup == false && level == 2) || (levelThreeSetup == false && level == 3)  || (levelFourSetup == false && level == 4) || (levelFiveSetup == false && level == 5)) {//will check what all blocks say
     blockOne.runLine(blockOne.blockText);
     //delay(1000);
     blockTwo.runLine(blockTwo.blockText);
@@ -257,14 +258,13 @@ if(mouseX >= 0 && mouseX <= (width/3) + (width/15) && mouseY >= 10.5 * (height/1
     blockNine.runLine(blockNine.blockText);
     //wait(1500);
     blockTen.runLine(blockTen.blockText);
-    //detectWin();//this might be messed up, remove this if error occurs.
   }
 }
 
-void drawLevelOne() {
+void drawLevelOne() {//draws level
   compSciMain.jonesX = 990;
   compSciMain.jonesY = 870;
-  if (levelOneSetup) {
+  if (levelOneSetup) {//will only run if not the tutorial
     rectMode(CORNER);
     push();
     scale(.5);//this is how to properly scale all the imagery (just this line).
@@ -406,7 +406,7 @@ void drawLevelFive() {
   detectWin();
 }
 
-void drawGameOver() {
+void drawGameOver() {//this screen is never reached, there is no game over condition unless you beat the game
 
   GameOver.resize(width, height);
   image(GameOver, 0, 0);
@@ -416,7 +416,7 @@ void drawGameOver() {
   }
 }
 
-void mouseClicked() {
+void mouseClicked() {//will update the text of all blocks if applicable
     blockOne.updateText();
     blockTwo.updateText();
     blockThree.updateText();
@@ -427,7 +427,7 @@ void mouseClicked() {
     blockEight.updateText();
     blockNine.updateText();
     blockTen.updateText();
-    if (level == 0) {
+    if (level == 0) {//protects the blocks from being altered in a menu
      resetBlocks(); 
     }
 }

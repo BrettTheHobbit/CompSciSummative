@@ -12,7 +12,7 @@ class Block { //The block class is used to instantiate 10 blocks that when click
     this.blockY = bY; 
    this.blockText = "________";
   }
-  void runLine(String textBlock) {
+  void runLine(String textBlock) {//reads what the text on the block says
     
     switch(textBlock) {
       case "________":
@@ -39,7 +39,7 @@ class Block { //The block class is used to instantiate 10 blocks that when click
     }
   }
   
-  void drawBlock() {
+  void drawBlock() {//draws the physical block
    fill(#6a9aa6);//These two lines are the blocks.
    rect(this.blockX, this.blockY,width/3,height/15);
    fill(#ffffff);//the text for the blocks \/  \/
@@ -58,19 +58,19 @@ class Block { //The block class is used to instantiate 10 blocks that when click
       }
       switch(this.indexBlock) {
         case 0:
-           this.blockText = "________";
+           this.blockText = "________";//no effect
            break;
         case 1:
-         this.blockText = "Left";
+         this.blockText = "Left";//moves left
          break;
        case 2:
-         this.blockText = "Right";
+         this.blockText = "Right";//moves right
          break;
        case 3:
-         this.blockText = "Forward";
+         this.blockText = "Upward";//moves up
          break;
        case 4:
-         this.blockText = "Back";
+         this.blockText = "Down";//moves down
          break;
       }
     }

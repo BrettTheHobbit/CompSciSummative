@@ -2,7 +2,7 @@
 This class displays the puzzle action. checking if the player and idol are touching and acting out everything that is said to happen in the logic class.
 */
 
-//static class action was removed cuz it had nothing in it.
+//These following methods are hit detection in case you move out of walls
 
 void level1Hit(){//all of these just put him back at the start
  if(compSciMain.jonesX >= 670 * 1.9 && compSciMain.jonesY >= 450 * 1.8 && compSciMain.jonesY <= 515 * 1.8){ // bottom right area
@@ -25,7 +25,7 @@ void level1Hit(){//all of these just put him back at the start
   }
 }
 
-void levelTwoHit(){
+void levelTwoHit(){//hit detection for the second level
    if(compSciMain.jonesX <= 400 * 1.8 || compSciMain.jonesX >= 780 * 1.8 || compSciMain.jonesY >= 510 * 1.8 || compSciMain.jonesY <= 175 * 1.9){ // border
      displayWarning();
   }
@@ -40,7 +40,7 @@ void levelTwoHit(){
   }
 }
 
-void levelThreeHit(){
+void levelThreeHit(){//hit detection for third level
   if(compSciMain.jonesX <= 370 * 1.8 || compSciMain.jonesX >= 800 * 1.8 || compSciMain.jonesY >= 480 * 1.2 || compSciMain.jonesY <= 85 * 1.2){ // border
    displayWarning();
   }
@@ -55,7 +55,7 @@ void levelThreeHit(){
    }
 }
 
-void levelFourHit(){
+void levelFourHit(){// hit detetcion for fourth level
     if(compSciMain.jonesX <= 360 * 1.9 || compSciMain.jonesX >= 860 * 1.9 || compSciMain.jonesY >= 540 * 1.9 || compSciMain.jonesY <= 80 * 1.9){ // border
     displayWarning();
   }
@@ -70,7 +70,7 @@ void levelFourHit(){
  }
 }
 
-void levelFiveHit(){
+void levelFiveHit(){//hit detection for final level
     if(compSciMain.jonesX <= 360 * 1.8 || compSciMain.jonesX >= 860 * 1.8 || compSciMain.jonesY >= 540 * 1.8 || compSciMain.jonesY <= 40 * 1.8){ // border
   displayWarning();
   }
@@ -91,8 +91,9 @@ void levelFiveHit(){
  }
 }
 
-//ALL FOUR OF THESE 
+//These are the actions called from the block class
 void moveLeft() {
+  //checks to see what level to determine how far to move (they aren't scaled the same)
   if (level == 1){
     push();
     scale(.5);
@@ -140,6 +141,7 @@ void moveLeft() {
 }
 
 void moveRight() {
+  //checks to see what level to determine how far to move (they aren't scaled the same)
   if(level == 1){
     compSciMain.jonesX = compSciMain.jonesX + 200;
     push();
@@ -190,6 +192,7 @@ void moveRight() {
 }
 
 void moveForwards() {
+  //checks to see what level to determine how far to move (they aren't scaled the same)
   if(level == 1){
     push();
     scale(.5);
@@ -240,6 +243,7 @@ void moveForwards() {
 }
 
 void moveBackwards() {
+  //checks to see what level to determine how far to move (they aren't scaled the same)
   if(level == 1){
     push();
     scale(.5);
@@ -293,7 +297,7 @@ void moveBackwards() {
   }
 }
 
-void detectWin() {
+void detectWin() {//detects if you are on the winning square at the end of the sequence
   if(level == 1 && compSciMain.jonesX >= 655 * 1.9 && compSciMain.jonesX <= 800 * 1.9 && compSciMain.jonesY >= 80 * 1.9 && compSciMain.jonesY <= 160 * 1.9){ // level 1 finish
   fill(#4a9e3a);
   textSize(width/25);
@@ -322,7 +326,6 @@ void detectWin() {
   saveProgress(level);//saves the current level + 1 to catch you up to speed when you finish the level
  }
   if(level == 4 && compSciMain.jonesX >= 760 && compSciMain.jonesX <= 800 && compSciMain.jonesY >= 180 && compSciMain.jonesY <= 220){ // level 4 finish
-  print(69);
   fill(#4a9e3a);
   textSize(width/25);
   text("Hooray! You found the treasure!", width/2.75, height/1.01);
@@ -339,12 +342,13 @@ void detectWin() {
   textSize(width/25);
   text("Hooray! You found the treasure!", width/2.75, height/1.01);
   resetBlocks();
-  level = 0;
+  level++;
   saveProgress(level);//saves the current level + 1 to catch you up to speed when you finish the level
  }
 }
 
-void displayWarning() {
+void displayWarning() {//is called when the player is out of bounds, will only show when mouse is held down
+//the positional resets pull the char back when the mouse button is released
   if(level == 1){
   compSciMain.jonesX = 990;
   compSciMain.jonesY = 870;
