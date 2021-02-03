@@ -109,7 +109,28 @@ void moveLeft() {
     image(IndianaJonesLeft, compSciMain.jonesX, compSciMain.jonesY);
     pop();  
   
-  } else if (level == 7) {
+  } else if (level == 3) {
+    push();
+    scale(.5);
+    image(LevelThree, 4 *(width/5), height/5.5);
+    compSciMain.jonesX = compSciMain.jonesX - 200;
+    image(IndianaJonesLeft, compSciMain.jonesX, compSciMain.jonesY);
+    pop(); 
+  }else if (level == 4) {
+    push();
+    scale(.5);
+    image(LevelFour, 4 *(width/5), height/5.5);
+    compSciMain.jonesX = compSciMain.jonesX - 180;
+    image(IndianaJonesLeft, compSciMain.jonesX, compSciMain.jonesY);
+    pop(); 
+  }else if (level == 5) {
+    push();
+    scale(.5);
+    image(LevelFive, 4 *(width/5), height/5.5);
+    compSciMain.jonesX = compSciMain.jonesX - 140;
+    image(IndianaJonesLeft, compSciMain.jonesX, compSciMain.jonesY);
+    pop(); 
+  }else if (level == 7) {
     fill(#FFFFFF);
     textSize(30);
     text("  Click the dotted lines to change the direction to where you want to go in \norder from your first move to its last. When you're ready to run it, click play.\n                            Practice moving around the empty space.", width/3+90, height/6);
@@ -135,7 +156,31 @@ void moveRight() {
     image(IndianaJonesRight, compSciMain.jonesX, compSciMain.jonesY);
     pop();
     
-  } else if (level == 7) {
+  } else if (level == 3) {
+    compSciMain.jonesX = compSciMain.jonesX + 170;
+    push();
+    scale(.5);
+    image(LevelThree, 4 *(width/5), height/5.5);
+    image(IndianaJonesRight, compSciMain.jonesX, compSciMain.jonesY);
+    pop();
+    
+  } else if (level == 4) {
+    compSciMain.jonesX = compSciMain.jonesX + 200;
+    push();
+    scale(.5);
+    image(LevelFour, 4 *(width/5), height/5.5);
+    image(IndianaJonesRight, compSciMain.jonesX, compSciMain.jonesY);
+    pop();
+    
+  } else if (level == 5) {
+    compSciMain.jonesX = compSciMain.jonesX + 150;
+    push();
+    scale(.5);
+    image(LevelFive, 4 *(width/5), height/5.5);
+    image(IndianaJonesRight, compSciMain.jonesX, compSciMain.jonesY);
+    pop();
+    
+  }else if (level == 7) {
     fill(#FFFFFF);
     textSize(30);
     text("  Click the dotted lines to change the direction to where you want to go in \norder from your first move to its last. When you're ready to run it, click play.\n                            Practice moving around the empty space.", width/3+90, height/6);
@@ -161,7 +206,31 @@ void moveForwards() {
     image(IndianaJonesRight, compSciMain.jonesX, compSciMain.jonesY);
     pop();
     
-  } else if (level == 7) {
+  } else if (level == 3) {
+    compSciMain.jonesY = compSciMain.jonesY - 175;
+    push();
+    scale(.5);
+    image(LevelThree, 4 *(width/5), height/5.5);
+    image(IndianaJonesRight, compSciMain.jonesX, compSciMain.jonesY);
+    pop();
+    
+  } else if (level == 4) {
+    compSciMain.jonesY = compSciMain.jonesY - 165;
+    push();
+    scale(.5);
+    image(LevelFour, 4 *(width/5), height/5.5);
+    image(IndianaJonesRight, compSciMain.jonesX, compSciMain.jonesY);
+    pop();
+    
+  } else if (level == 5) {
+    compSciMain.jonesY = compSciMain.jonesY - 240;
+    push();
+    scale(.5);
+    image(LevelFive, 4 *(width/5), height/5.5);
+    image(IndianaJonesRight, compSciMain.jonesX, compSciMain.jonesY);
+    pop();
+    
+  }else if (level == 7) {
     fill(#FFFFFF);
     textSize(30);
     text("  Click the dotted lines to change the direction to where you want to go in \norder from your first move to its last. When you're ready to run it, click play.\n                            Practice moving around the empty space.", width/3+90, height/6);
@@ -186,9 +255,36 @@ void moveBackwards() {
     compSciMain.jonesY = compSciMain.jonesY + 175;
     image(IndianaJones, compSciMain.jonesX, compSciMain.jonesY);
     pop();
-    wait(100);
+    
   
-  } else if (level == 7) {
+  } else if (level == 3) {
+    push();
+    scale(.5);
+    image(LevelThree, 4 *(width/5),  height/5.5);
+    compSciMain.jonesY = compSciMain.jonesY + 195;
+    image(IndianaJones, compSciMain.jonesX, compSciMain.jonesY);
+    pop();
+    
+  
+  } else if (level == 4) {
+    push();
+    scale(.5);
+    image(LevelFour, 4 *(width/5),  height/5.5);
+    compSciMain.jonesY = compSciMain.jonesY + 175;
+    image(IndianaJones, compSciMain.jonesX, compSciMain.jonesY);
+    pop();
+    
+  
+  } else if (level == 5) {
+    push();
+    scale(.5);
+    image(LevelFive, 4 *(width/5),  height/5.5);
+    compSciMain.jonesY = compSciMain.jonesY + 165;
+    image(IndianaJones, compSciMain.jonesX, compSciMain.jonesY);
+    pop();
+    
+  
+  }else if (level == 7) {
     fill(#FFFFFF);
     textSize(100);
     text("  Click the dotted lines to change the direction to where you want to go in \norder from your first move to its last. When you're ready to run it, click play.\n                            Practice moving around the empty space.", width/3+90, height/6);
@@ -202,27 +298,53 @@ void detectWin() {
   fill(#4a9e3a);
   textSize(width/25);
   text("Hooray! You found the treasure!", width/2.75, height/1.01);
+  levelTwoSetup = true;//allows the second image to be drawn
+  resetBlocks();//resets what the blocks say
+  level++;//moves to level two
+  saveProgress(level);//saves the current level + 1 to catch you up to speed when you finish the level
+ }
+ if(level == 2 && compSciMain.jonesX >= 860 && compSciMain.jonesX <= 920 && compSciMain.jonesY >= 330 && compSciMain.jonesY <= 390){
+   fill(#4a9e3a);
+   textSize(width/25);
+   text("Hooray! You found the treasure!", width/2.75, height/1.01);
+   levelThreeSetup = true;
+   resetBlocks();
+   level++;
+   saveProgress(level);
+ }
+  if(level == 3 && compSciMain.jonesX >= 570 * 1.9 && compSciMain.jonesX <= 590 * 1.9 && compSciMain.jonesY >= 350 * 1.9 && compSciMain.jonesY <= 390 * 1.9){ // this detection method doesnèt work, skip for presentation
+  fill(#4a9e3a);
+  textSize(width/25);
+  text("Hooray! You found the treasure!", width/2.75, height/1.01);
+  levelFourSetup = true;
+  resetBlocks();
   level++;
   saveProgress(level);//saves the current level + 1 to catch you up to speed when you finish the level
  }
-  if(level == 3 && compSciMain.jonesX >= 556 * 1.9 && compSciMain.jonesX <= 655 * 1.9 && compSciMain.jonesY >= 355 * 1.2 && compSciMain.jonesY <= 480 * 1.2){ // level 3 finish
+  if(level == 4 && compSciMain.jonesX >= 760 && compSciMain.jonesX <= 800 && compSciMain.jonesY >= 180 && compSciMain.jonesY <= 220){ // level 4 finish
+  print(69);
+  fill(#4a9e3a);
+  textSize(width/25);
+  text("Hooray! You found the treasure!", width/2.75, height/1.01);
+  levelFiveSetup = true;
+  resetBlocks();
   level++;
   saveProgress(level);//saves the current level + 1 to catch you up to speed when you finish the level
  }
-  if(level == 4 && compSciMain.jonesX >= 385 * 1.9 && compSciMain.jonesX <= 500 * 1.9 && compSciMain.jonesY >= 110 * 1.9 && compSciMain.jonesY <= 215 * 1.9){ // level 4 finish
-  level++;
-  saveProgress(level);//saves the current level + 1 to catch you up to speed when you finish the level
- }
-  if(level == 5 && compSciMain.jonesX >= 705 * 1.8 && compSciMain.jonesX <= 770 * 1.8 && compSciMain.jonesY >= 390 * 1.8 && compSciMain.jonesY <= 460 * 1.8){ // level 5 finish
-  level++;
+  println(compSciMain.jonesX + " " + compSciMain.jonesY);
+  fill(33);
+  rect(700, 380, 75, 75);
+  if(level == 5 && compSciMain.jonesX >= 700 * 1.9 && compSciMain.jonesX <= 775 * 1.9 && compSciMain.jonesY >= 380 * 1.9 && compSciMain.jonesY <= 555 * 1.9){ // this one shares the same problem with level three, the base coords stay the same during the detection.
+  fill(#4a9e3a);
+  textSize(width/25);
+  text("Hooray! You found the treasure!", width/2.75, height/1.01);
+  resetBlocks();
+  level = 0;
   saveProgress(level);//saves the current level + 1 to catch you up to speed when you finish the level
  }
 }
 
 void displayWarning() {
- fill(#af2020); 
- textSize(width/25);
- text("Nice Try! - Keep Steven safe", width/2.75, height/1.01);
   if(level == 1){
   compSciMain.jonesX = 990;
   compSciMain.jonesY = 870;
@@ -243,4 +365,7 @@ void displayWarning() {
   compSciMain.jonesX = 800;
   compSciMain.jonesY = 620;
  }
+ fill(#af2020); 
+ textSize(width/25);
+ text("Nice Try! - Keep Steven safe", width/2.75, height/1.01);
 }

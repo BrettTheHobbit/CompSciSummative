@@ -22,15 +22,18 @@ SoundFile intro;
 SoundFile mainSound; //game sound one couldnt be decoded
 SoundFile gameOverSound;
 
-int level = 0;
-int xPos, yPos = 10;
+int level = 5;
+int xPos, yPos = 10;//more specifically the x/y pos of the blocks on the side
 int savedLevel = 1;//starter is on one but will autosave after every level completetion
 
 boolean soundLock = false;//this ensures that songs won't be played over and over again in a draw loop. Also dont put songs in the drawloop unless you want crazy feedback.
 boolean GOsoundLock = false;//this is the game over version
-boolean backClick = true;//stops from clicking back and going straight to level one.
 boolean levelOneSetup = false;
 boolean levelTwoSetup = false;
+boolean levelThreeSetup = false;
+boolean levelFourSetup = false;
+boolean levelFiveSetup = false;
+boolean starterPointBlock = true;
 
 PImage LevelOne;
 PImage LevelTwo;
@@ -128,7 +131,6 @@ void draw() {
   }
 }
 void drawSelectScreen() {
-  backClick = true;
   fill(255);
   textSize (width/25);
   text("Click the level you want to play!", width/5, height/12);
@@ -136,7 +138,7 @@ void drawSelectScreen() {
   scale(0.125);//makes the levels into thumbnail sizes
   image(LevelOne, width, height*2);
   image(LevelTwo, width * 3.25, height * 2);//uncomment the third level when added.
-  //image(LevelFour, width * 5.5, height * 2);
+  image(LevelThree, width * 5.5, height * 2);
   image(LevelFour, width * 2.125, height * 5);
   image(LevelFive, width * 4.5, height * 5);
   pop();
@@ -152,15 +154,18 @@ void drawSelectScreen() {
     levelOneSetup = true;
   } else if (mousePressed && mouseX > (width * 3.25)/8 && mouseX < ((width*3.25)/8) + 125 && mouseY > (height * 2)/8 && mouseY < (height * 2)/8 + 125) {
     level = 2;
+    levelTwoSetup = true;
   } else if (mousePressed && mouseX > (width * 5.5)/8 && mouseX < ((width * 5.5)/8) + 125 && mouseY > (height * 2)/8 && mouseY < (height * 2)/8 + 125) {
-    level = 3;//this takes you to the same level as two
+    level = 3;
+    levelThreeSetup = true;
   } else if (mousePressed && mouseX > (width * 2.125)/8 && mouseX < ((width * 2.125)/8) + 125 && mouseY > (height * 5)/8 && mouseY < (height * 5)/8 + 125) {
     level = 4;
+    levelFourSetup = true;
   } else if (mousePressed && mouseX > (width * 4.5)/8 && mouseX < ((width * 4.5)/8) + 125 && mouseY > (height * 5)/8 && mouseY < (height * 5)/8 + 125) {
     level = 5;
+    levelFiveSetup = true;
   } else if (mousePressed && mouseX > 0 && mouseX < width/4.5 && mouseY < height && mouseY > height/1.05) {
     level = 0;//takes you back to main menu
-    backClick = true;//saves the player from going striaght to the level
   }
 }
 
@@ -204,9 +209,7 @@ void drawMenuScreen() {
   rectMode(CORNER);//resets the modes in order to save the scaling for level one
   imageMode(CORNER);
   textAlign(CORNER, CORNER);
-  if (mouseButton == 0) {//this is when the mouse is released
-    backClick = false;
-  }
+
   if (keyPressed && (key == 'p' || key == 'P')) {
     level = 1;
     levelOneSetup = true;
@@ -224,26 +227,33 @@ void playLogic() {//only draws the last move, not all moves in succession
   if (mouseX >= 0 && mouseX <= (width/3) + (width/15) && mouseY >= 13.5 * (height/15) && mouseY <= height && mousePressed) {
     //the above conditional checks 
     levelOneSetup = false;
+    levelTwoSetup = false;
+    levelThreeSetup = false;
+    levelFourSetup = false;
+    levelFiveSetup = false;
+    starterPointBlock = false;
   } 
-  if (levelOneSetup == false && level == 1) {//this is the reason nothing happens on the second level
+  if ((level == 1 && levelOneSetup == false) || (levelTwoSetup == false && level == 2) || (levelThreeSetup == false && level == 3)  || (levelFourSetup == false && level == 4) || (levelFiveSetup == false && level == 5)) {//this is the reason nothing happens on the second level
+  
+    println("god I hate this method" + level + " " + compSciMain.jonesX + " " + compSciMain.jonesY );
     blockOne.runLine(blockOne.blockText);
-    delay(1000);
+    //delay(1000);
     blockTwo.runLine(blockTwo.blockText);
-    delay(1000);
+    //delay(1000);
     blockThree.runLine(blockThree.blockText);
-    wait(1500);
+    //wait(1500);
     blockFour.runLine(blockFour.blockText); 
-    wait(1500);
+    //wait(1500);
     blockFive.runLine(blockFive.blockText); 
-    wait(1500);
+    //wait(1500);
     blockSix.runLine(blockSix.blockText);
-    wait(1500);
+    //wait(1500);
     blockSeven.runLine(blockSeven.blockText);
-    wait(1500);
+    //wait(1500);
     blockEight.runLine(blockEight.blockText); 
-    wait(1500);
+   // wait(1500);
     blockNine.runLine(blockNine.blockText);
-    wait(1500);
+    //wait(1500);
     blockTen.runLine(blockTen.blockText);
     //detectWin();//this might be messed up, remove this if error occurs.
   }
@@ -274,18 +284,21 @@ void drawLevelOne() {
   blockTen.drawBlock();
   drawBackground();//draws the green button etc.
   playLogic();//runs the actual button logic when the grren button is pressed
-  level1Hit();
-  detectWin();
+  level1Hit();//the hit detection within the level
+  detectWin();//detects if you reach the end
 }
 
 void drawLevelTwo() {
-  compSciMain.jonesX = 820;
+  levelTwoSetup = true;
+  compSciMain.jonesX = 820;//resets the sprite to the new level start
   compSciMain.jonesY = 840;
-  push();
-  scale(.5);//this is how to properly scale all the imagery (just this line).
-  image(LevelTwo, 4 *(width/5), height/7.5);
-  image(IndianaJones, compSciMain.jonesX, compSciMain.jonesY);
-  pop();
+  if (levelTwoSetup) {
+    push();
+    scale(.5);//this is how to properly scale all the imagery (just this line).
+    image(LevelTwo, 4 *(width/5), height/7.5);
+    image(IndianaJones, compSciMain.jonesX, compSciMain.jonesY);
+    pop();
+  }
   fill(#7b9095);
   rect(0, 0, width/3, height); 
   blockOne.drawBlock();//draws 'scratch blocks'
@@ -305,13 +318,16 @@ void drawLevelTwo() {
 }
 
 void drawLevelThree() {
+  levelThreeSetup = true;
   compSciMain.jonesX = 810;
   compSciMain.jonesY = 150;
+  if (levelThreeSetup) {
   push();
   scale(.5);//this is how to properly scale all the imagery (just this line).
   image(LevelThree, 4 *(width/5), height/7.5);
   image(IndianaJones, compSciMain.jonesX, compSciMain.jonesY);
   pop();
+  }
   fill(#7b9095);
   rect(0, 0, width/3, height); 
   blockOne.drawBlock();//draws 'scratch blocks'
@@ -331,13 +347,16 @@ void drawLevelThree() {
 }
 
 void drawLevelFour() {
+  levelFourSetup = true;
   compSciMain.jonesX = 1500;
   compSciMain.jonesY = 860;
-  push();
-  scale(.5);//this is how to properly scale all the imagery (just this line).
-  image(LevelFour, 4 *(width/5), height/7.5);
-  image(IndianaJones, compSciMain.jonesX, compSciMain.jonesY);
-  pop();
+  if (levelFourSetup) {
+    push();
+    scale(.5);//this is how to properly scale all the imagery (just this line).
+    image(LevelFour, 4 *(width/5), height/7.5);
+    image(IndianaJones, compSciMain.jonesX, compSciMain.jonesY);
+    pop();
+  }
   fill(#7b9095);
   rect(0, 0, width/3, height); 
   blockOne.drawBlock();//draws 'scratch blocks'
@@ -357,13 +376,16 @@ void drawLevelFour() {
 }
 
 void drawLevelFive() {
+  levelFiveSetup = true;
   compSciMain.jonesX = 800;
   compSciMain.jonesY = 620;
+  if (levelFiveSetup) {
   push();
   scale(.5);//this is how to properly scale all the imagery (just this line).
   image(LevelFive, 4 *(width/5), height/7.5);
   image(IndianaJones, compSciMain.jonesX, compSciMain.jonesY);
   pop();
+  }
   fill(#7b9095);
   rect(0, 0, width/3, height); 
   blockOne.drawBlock();//draws 'scratch blocks'
@@ -426,7 +448,10 @@ void drawTutorial() {
   playLogic();
   fill(#FFFFFF);
   textSize(15);
-  text("  Click the dotted lines to change the direction to where you want to go in \norder from your first move to its last. When you're ready to run it, click play.\n                            Practice moving around the empty space.", 320*width/900, height/6);
+  text("  Click the dotted lines to change the direction to where you want to go in \norder from your first move to its last. When you're ready to run it, click play.\n                            Practice moving around the empty space.\n                                       When you are done, press D.", 320*width/900, height/6);
+  if(keyPressed && (key == 'd' || key == 'D')) {
+    level = 0;
+  }
 }
 
 //this is the universal logic background.
